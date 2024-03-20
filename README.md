@@ -9,4 +9,4 @@ Project uses microservices architecture and is/will be used for simple mobile ga
     - login
     - register
  - character service
- - adventure service
+ - adventure service 
