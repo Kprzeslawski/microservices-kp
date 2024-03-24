@@ -1,4 +1,4 @@
-package com.przeslawskik.character_service_module.documents;
+package com.przeslawskik.character_module.documents;
 
 import lombok.Data;
 import org.bson.types.ObjectId;

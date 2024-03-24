@@ -1,6 +1,6 @@
-package com.przeslawskik.character_service_module.repository;
+package com.przeslawskik.character_module.repository;
 
-import com.przeslawskik.character_service_module.documents.Hero;
+import com.przeslawskik.character_module.documents.Hero;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
-package com.przeslawskik.character_service_module.controller;
+package com.przeslawskik.character_module.controller;
 
-import com.przeslawskik.character_service_module.service.CSService;
+import com.przeslawskik.character_module.service.CSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

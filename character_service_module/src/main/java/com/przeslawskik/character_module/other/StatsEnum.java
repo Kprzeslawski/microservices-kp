@@ -1,4 +1,4 @@
-package com.przeslawskik.character_service_module.other;
+package com.przeslawskik.character_module.other;
 
 public enum StatsEnum {
     ATTACK_DAMAGE("attack_dmg"),

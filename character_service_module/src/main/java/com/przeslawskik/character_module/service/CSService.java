@@ -1,7 +1,8 @@
-package com.przeslawskik.character_service_module.service;
+package com.przeslawskik.character_module.service;
 
-import com.przeslawskik.character_service_module.documents.Hero;
-import com.przeslawskik.character_service_module.repository.HeroRepository;
+import com.przeslawskik.character_module.documents.Hero;
+import com.przeslawskik.character_module.other.StatsEnum;
+import com.przeslawskik.character_module.repository.HeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,14 @@ public class CSService {
                 .name("test")
                 .level(1)
                 .exp(0)
+                .stats(
+                        new HashMap<>(){{
+                          put(StatsEnum.ATTACK_DAMAGE,1);
+                          put(StatsEnum.ARMOR,2);
+                        }}
+                )
                 .build();
+
 
         heroRepository.save(h);
 

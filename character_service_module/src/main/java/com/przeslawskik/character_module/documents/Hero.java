@@ -1,6 +1,6 @@
-package com.przeslawskik.character_service_module.documents;
+package com.przeslawskik.character_module.documents;
 
-import com.przeslawskik.character_service_module.other.StatsEnum;
+import com.przeslawskik.character_module.other.StatsEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +24,6 @@ public class Hero {
     private String name;
     private Integer level;
     private Integer exp;
+    private Map<StatsEnum,?> stats;
 
 }

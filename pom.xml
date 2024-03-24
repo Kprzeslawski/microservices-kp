@@ -17,6 +17,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>character_service_module</module>
+        <module>loc_and_mob_module</module>
+        <module>battle_module</module>
     </modules>
 
     <properties>
