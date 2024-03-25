@@ -25,8 +25,6 @@ public class Item {
     @DocumentReference
     private Hero hero;
 
-
-
     private Map<StatsEnum,?> stats;
 
 }
