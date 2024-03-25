@@ -21,9 +21,9 @@ public class Hero {
     @Id
     private ObjectId id;
 
-    private String name;
+
+    private Map<StatsEnum,?> stats;    private String name;
     private Integer level;
     private Integer exp;
-    private Map<StatsEnum,?> stats;
 
 }
