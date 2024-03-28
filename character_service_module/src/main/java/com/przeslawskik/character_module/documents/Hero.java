@@ -21,9 +21,10 @@ public class Hero {
     @Id
     private ObjectId id;
 
-
-    private Map<StatsEnum,?> stats;    private String name;
+    private String name;
     private Integer level;
     private Integer exp;
+    private Map<StatsEnum,Integer> base_stats;
+    private Map<StatsEnum,Integer> stats;
 
 }
