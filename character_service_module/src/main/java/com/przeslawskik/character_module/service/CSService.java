@@ -1,8 +1,13 @@
 package com.przeslawskik.character_module.service;
 
 import com.przeslawskik.character_module.documents.Hero;
+import com.przeslawskik.character_module.documents.Item;
+import com.przeslawskik.character_module.mapper.HeroStatsResponse;
+import com.przeslawskik.character_module.other.ItemsManipulationHandler;
+import com.przeslawskik.character_module.other.ItemsRegister;
 import com.przeslawskik.character_module.other.StatsEnum;
 import com.przeslawskik.character_module.repository.HeroRepository;
+import com.przeslawskik.character_module.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +18,9 @@ public class CSService {
 
     @Autowired
     private HeroRepository heroRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     public Integer test_save(){
 //        Hero h = new Hero();
@@ -28,9 +36,16 @@ public class CSService {
                 )
                 .build();
 
-
         heroRepository.save(h);
 
+        Item i = ItemsManipulationHandler.createNewItemBasedOnRegister(ItemsRegister.WOODEN_SWORD,h);
+
+        itemRepository.save(i);
+
         return 0;
+    }
+
+    public HeroStatsResponse getChampStats(Integer id) {
+        return null;
     }
 }
