@@ -12,6 +12,6 @@ import java.util.Map;
 public class BaseItem {
     private final String name;
     private final SlotEnum slot;
-    private final Map<StatsEnum,?> avg_stats;
+    private final Map<StatsEnum,Integer> avg_stats;
 
 }
