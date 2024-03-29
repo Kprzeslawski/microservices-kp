@@ -48,4 +48,24 @@ public class CSService {
     public HeroStatsResponse getChampStats(Integer id) {
         return null;
     }
+
+    public Boolean createNewHero() {
+        return null;
+    }
+
+    public Boolean addItemToInventory() {
+        return null;
+    }
+
+    public Boolean awardWithXp() {
+        return null;
+    }
+
+    public Boolean changeEquipment() {
+        return null;
+    }
+
+    public Boolean getHeroInventory() {
+        return null;
+    }
 }

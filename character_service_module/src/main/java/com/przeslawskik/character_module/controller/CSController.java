@@ -20,13 +20,35 @@ public class CSController {
         return ResponseEntity.ok(service.test_save());
     }
 
-    @GetMapping("/champ_stats/{id}")
+    @GetMapping("/hero_stats/{id}")
     public ResponseEntity<HeroStatsResponse> getChampStats(
             @PathVariable Integer id
     ){
         return ResponseEntity.ok(service.getChampStats(id));
     }
+    @GetMapping("/hero_creation")
+    public ResponseEntity<Boolean> createNewHero(){
+        return ResponseEntity.ok(service.createNewHero());
+    }
 
+    @GetMapping("/award_hero_with_item")
+    public ResponseEntity<Boolean> addItemToInventory(){
+        return ResponseEntity.ok(service.addItemToInventory());
+    }
 
+    @GetMapping("/award_hero_with_xp")
+    public ResponseEntity<Boolean> awardWithXp(){
+        return ResponseEntity.ok(service.awardWithXp());
+    }
+
+    @GetMapping("/change_hero_equipment")
+    public ResponseEntity<Boolean> changeEquipment(){
+        return ResponseEntity.ok(service.changeEquipment());
+    }
+
+    @GetMapping("/hero_inventory")
+    public ResponseEntity<Boolean> getHeroInventory(){
+        return ResponseEntity.ok(service.getHeroInventory());
+    }
 
 }
