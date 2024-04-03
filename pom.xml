@@ -19,6 +19,7 @@
         <module>character_service_module</module>
         <module>loc_and_mob_module</module>
         <module>battle_module</module>
+        <module>discovery_server</module>
     </modules>
 
     <properties>
