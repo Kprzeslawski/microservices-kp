@@ -1,5 +1,6 @@
 package com.przeslawskik.battle_module.contoller;
 
+import com.przeslawskik.battle_module.mapper.BattleResponse;
 import com.przeslawskik.battle_module.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class BMContoller {
     private BMService service;
 
     @GetMapping("/battle_result/{pId}/{mobId}")
-    public ResponseEntity<Long> getBattleResult(
+    public ResponseEntity<BattleResponse> getBattleResult(
             @PathVariable Integer pId,
             @PathVariable Integer mobId
     ){
