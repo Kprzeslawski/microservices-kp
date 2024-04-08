@@ -14,10 +14,11 @@ public class BMContoller {
     @Autowired
     private BMService service;
 
-    @GetMapping("/battle_result")
+    @GetMapping("/battle_result/{pId}/{mobId}")
     public ResponseEntity<Long> getBattleResult(
-            @PathVariable Integer id
+            @PathVariable Integer pId,
+            @PathVariable Integer mobId
     ){
-        return ResponseEntity.ok(service.getBattleResult(id));
+        return ResponseEntity.ok(service.getBattleResult(pId,mobId));
     }
 }
