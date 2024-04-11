@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class HeroStatsResponse {
- int ok;
-
  Integer health;
  Integer attack_dmg;
  Integer armor;
