@@ -11,4 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HeroStatsResponse {
  int ok;
+
+ Integer health;
+ Integer attack_dmg;
+ Integer armor;
+ Integer def;
+ Integer pow;
+ Integer agile;
+ Integer c_rate;
+ Integer c_dmg;
 }
