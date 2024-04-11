@@ -1,6 +1,8 @@
 package com.przeslawskik.character_module.other;
 
 public enum StatsEnum {
+
+    HEALTH("health"),
     ATTACK_DAMAGE("attack_dmg"),
     ARMOR("armor"),
     DEFENCE("def"),
