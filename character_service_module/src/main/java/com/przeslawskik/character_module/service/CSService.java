@@ -2,6 +2,7 @@ package com.przeslawskik.character_module.service;
 
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.Item;
+import com.przeslawskik.character_module.mapper.HeroCreationRequest;
 import com.przeslawskik.character_module.mapper.HeroStatsResponse;
 import com.przeslawskik.character_module.other.ItemsManipulationHandler;
 import com.przeslawskik.character_module.other.ItemsRegister;
@@ -46,14 +47,18 @@ public class CSService {
         return 0;
     }
 
-    public HeroStatsResponse getChampStats(Integer id) {
-        return null;
+    public HeroStatsResponse getChampStats(ObjectId pId) {
+
+        var h = heroRepository.findById(pId);
+
+        return HeroStatsResponse
+                .builder()
+                .build();
     }
 
-    public ObjectId createNewHero() {
-
+    public ObjectId createNewHero(HeroCreationRequest request) {
         var h = Hero.builder()
-                .name("test")
+                .name(request.getName())
                 .level(1)
                 .exp(0)
                 .stats(
@@ -80,6 +85,10 @@ public class CSService {
     }
 
     public Boolean getHeroInventory() {
+        return null;
+    }
+
+    public HeroStatsResponse getEnemyStats(Integer id) {
         return null;
     }
 }

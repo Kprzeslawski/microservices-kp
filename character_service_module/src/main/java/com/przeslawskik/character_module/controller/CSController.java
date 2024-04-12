@@ -1,14 +1,12 @@
 package com.przeslawskik.character_module.controller;
 
+import com.przeslawskik.character_module.mapper.HeroCreationRequest;
 import com.przeslawskik.character_module.mapper.HeroStatsResponse;
 import com.przeslawskik.character_module.service.CSService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/hero")
@@ -23,13 +21,22 @@ public class CSController {
 
     @GetMapping("/hero_stats/{id}")
     public ResponseEntity<HeroStatsResponse> getChampStats(
-            @PathVariable Integer id
+            @PathVariable ObjectId id
     ){
         return ResponseEntity.ok(service.getChampStats(id));
     }
-    @GetMapping("/hero_creation")
-    public ResponseEntity<ObjectId> createNewHero(){
-        return ResponseEntity.ok(service.createNewHero());
+
+    @GetMapping("/enemy_stat/{id}")
+    public ResponseEntity<HeroStatsResponse> getEnemyStat(
+            @PathVariable Integer id
+    ){
+        return ResponseEntity.ok(service.getEnemyStats(id));
+    }
+    @PostMapping("/hero_creation")
+    public ResponseEntity<ObjectId> createNewHero(
+            @RequestBody HeroCreationRequest request
+    ){
+        return ResponseEntity.ok(service.createNewHero(request));
     }
 
     @GetMapping("/award_hero_with_item/{id}")
