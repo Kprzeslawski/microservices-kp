@@ -51,9 +51,20 @@ public class CSService {
 
         var h = heroRepository.findById(pId);
 
+        if(h.isEmpty())throw new RuntimeException("NO HERO WITH ID");
+
         return HeroStatsResponse
                 .builder()
+                .health(h.get().getStats().get(StatsEnum.HEALTH))
+//                .attack_dmg()
+//                .armor()
+//                .def()
+//                .pow()
+//                .agile()
+//                .c_rate()
+//                .c_dmg()
                 .build();
+
     }
 
     public ObjectId createNewHero(HeroCreationRequest request) {
