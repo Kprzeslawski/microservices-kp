@@ -2,6 +2,7 @@ package com.przeslawskik.character_module.controller;
 
 import com.przeslawskik.character_module.mapper.HeroStatsResponse;
 import com.przeslawskik.character_module.service.CSService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +28,16 @@ public class CSController {
         return ResponseEntity.ok(service.getChampStats(id));
     }
     @GetMapping("/hero_creation")
-    public ResponseEntity<Boolean> createNewHero(){
+    public ResponseEntity<ObjectId> createNewHero(){
         return ResponseEntity.ok(service.createNewHero());
     }
 
-    @GetMapping("/award_hero_with_item")
+    @GetMapping("/award_hero_with_item/{id}")
     public ResponseEntity<Boolean> addItemToInventory(){
         return ResponseEntity.ok(service.addItemToInventory());
     }
 
-    @GetMapping("/award_hero_with_xp")
+    @GetMapping("/award_hero_with_xp/")
     public ResponseEntity<Boolean> awardWithXp(){
         return ResponseEntity.ok(service.awardWithXp());
     }

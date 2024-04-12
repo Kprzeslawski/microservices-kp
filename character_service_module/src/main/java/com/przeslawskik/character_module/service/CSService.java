@@ -8,6 +8,7 @@ import com.przeslawskik.character_module.other.ItemsRegister;
 import com.przeslawskik.character_module.other.StatsEnum;
 import com.przeslawskik.character_module.repository.HeroRepository;
 import com.przeslawskik.character_module.repository.ItemRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +50,21 @@ public class CSService {
         return null;
     }
 
-    public Boolean createNewHero() {
-        return null;
+    public ObjectId createNewHero() {
+
+        var h = Hero.builder()
+                .name("test")
+                .level(1)
+                .exp(0)
+                .stats(
+                        new HashMap<>(){{
+                            put(StatsEnum.ATTACK_DAMAGE,2);
+                            put(StatsEnum.HEALTH, 20);
+                        }}
+                )
+                .build();
+
+        return heroRepository.save(h).getId();
     }
 
     public Boolean addItemToInventory() {
