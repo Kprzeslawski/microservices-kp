@@ -55,14 +55,14 @@ public class CSService {
 
         return HeroStatsResponse
                 .builder()
-                .health(h.get().getStats().get(StatsEnum.HEALTH))
-//                .attack_dmg()
-//                .armor()
-//                .def()
-//                .pow()
-//                .agile()
-//                .c_rate()
-//                .c_dmg()
+                    .health(h.get().getStats().get(StatsEnum.HEALTH))
+                    .attack_dmg(h.get().getStats().get(StatsEnum.ATTACK_DAMAGE))
+                    .armor(h.get().getStats().get(StatsEnum.ARMOR))
+                    .def(h.get().getStats().get(StatsEnum.DEFENCE))
+                    .pow(h.get().getStats().get(StatsEnum.POWER))
+                    .agile(h.get().getStats().get(StatsEnum.AGILITY))
+                    .c_rate(h.get().getStats().get(StatsEnum.C_RATE))
+                    .c_dmg(h.get().getStats().get(StatsEnum.C_DMG))
                 .build();
 
     }
@@ -74,8 +74,14 @@ public class CSService {
                 .exp(0)
                 .stats(
                         new HashMap<>(){{
-                            put(StatsEnum.ATTACK_DAMAGE,2);
                             put(StatsEnum.HEALTH, 20);
+                            put(StatsEnum.ATTACK_DAMAGE,2);
+                            put(StatsEnum.ARMOR,0);
+                            put(StatsEnum.DEFENCE,0);
+                            put(StatsEnum.POWER,0);
+                            put(StatsEnum.AGILITY,0);
+                            put(StatsEnum.C_RATE,0);
+                            put(StatsEnum.C_DMG,0);
                         }}
                 )
                 .build();
