@@ -25,6 +25,15 @@ public class BMService {
                 .bodyToMono(EntityStatsRequest.class)
                 .block();
 
+        assert playerStats != null;
+        assert entityStats != null;
+
+        double playerTurnMeter = 0.;
+        double enemyTurnMeter = 0.;
+
+        int playerHp = playerStats.getHealth();
+        int enemyyHp = entityStats.getHealth();
+
 
         return null;
     }

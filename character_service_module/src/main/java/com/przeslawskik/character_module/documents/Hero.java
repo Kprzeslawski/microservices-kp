@@ -20,7 +20,6 @@ public class Hero {
 
     @Id
     private ObjectId id;
-
     private String name;
     private Integer level;
     private Integer exp;

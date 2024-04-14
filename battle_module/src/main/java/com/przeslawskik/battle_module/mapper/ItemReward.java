@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ItemReward {
 
-
 }
