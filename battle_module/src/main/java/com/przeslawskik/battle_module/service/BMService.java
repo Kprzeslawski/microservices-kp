@@ -2,10 +2,14 @@ package com.przeslawskik.battle_module.service;
 
 import com.przeslawskik.battle_module.mapper.BattleResponse;
 import com.przeslawskik.battle_module.mapper.EntityStatsRequest;
+import com.przeslawskik.battle_module.mapper.TurnSequence;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +37,29 @@ public class BMService {
 
         int playerHp = playerStats.getHealth();
         int enemyyHp = entityStats.getHealth();
+
+        List<TurnSequence> fight_log = new ArrayList<>();
+
+        while (true){
+            double sec_fpt = (100.-playerTurnMeter)/playerStats.getAgile();
+            double sec_fet = (100.-enemyTurnMeter)/entityStats.getAgile();
+            boolean pTurn = sec_fpt <  sec_fet;
+
+            if(pTurn){
+                playerTurnMeter = 0.;
+                enemyTurnMeter += sec_fpt * entityStats.getAgile();
+
+            }else {
+                enemyTurnMeter = 0.;
+                playerTurnMeter += sec_fet * playerStats.getAgile();
+            }
+
+
+
+
+
+
+        }
 
 
         return null;
