@@ -13,5 +13,6 @@ public class BattleResponse {
     List<TurnSequence> turnSequenceList;
     Integer gold_reward;
     Integer exp_reward;
+    Boolean won;
     List<ItemReward> itemRewardList;
 }

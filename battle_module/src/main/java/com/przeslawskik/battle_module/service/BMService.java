@@ -41,6 +41,8 @@ public class BMService {
         List<TurnSequence> fight_log = new ArrayList<>();
         boolean playerWonFight = false;
 
+        int turn_count = 0;
+
         while (true){
             double sec_fpt = (100.-playerTurnMeter)/playerStats.getAgile();
             double sec_fet = (100.-enemyTurnMeter)/entityStats.getAgile();
@@ -49,6 +51,8 @@ public class BMService {
             if(pTurn){
                 playerTurnMeter = 0.;
                 enemyTurnMeter += sec_fpt * entityStats.getAgile();
+
+                enemyyHp -= 1.;//TODO damage
 
                 if(enemyyHp <= 0){
                     playerWonFight = true;
@@ -59,16 +63,24 @@ public class BMService {
                 enemyTurnMeter = 0.;
                 playerTurnMeter += sec_fet * playerStats.getAgile();
 
+                playerHp -= 1;// TODO 2
+
                 if(playerHp <= 0){
                     playerWonFight = false;
                     break;
                 }
             }
 
+            turn_count ++;
         }
 
         return BattleResponse
                 .builder()
+                .turnSequenceList(fight_log)
+                .itemRewardList(new ArrayList<>())
+                .exp_reward(0)
+                .gold_reward(0)
+                .won(playerWonFight)
                 .build();
     }
 }
