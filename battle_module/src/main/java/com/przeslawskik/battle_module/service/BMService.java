@@ -39,6 +39,7 @@ public class BMService {
         int enemyyHp = entityStats.getHealth();
 
         List<TurnSequence> fight_log = new ArrayList<>();
+        boolean playerWonFight = false;
 
         while (true){
             double sec_fpt = (100.-playerTurnMeter)/playerStats.getAgile();
@@ -49,19 +50,25 @@ public class BMService {
                 playerTurnMeter = 0.;
                 enemyTurnMeter += sec_fpt * entityStats.getAgile();
 
+                if(enemyyHp <= 0){
+                    playerWonFight = true;
+                    break;
+                }
+
             }else {
                 enemyTurnMeter = 0.;
                 playerTurnMeter += sec_fet * playerStats.getAgile();
+
+                if(playerHp <= 0){
+                    playerWonFight = false;
+                    break;
+                }
             }
-
-
-
-
-
 
         }
 
-
-        return null;
+        return BattleResponse
+                .builder()
+                .build();
     }
 }
