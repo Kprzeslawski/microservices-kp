@@ -5,6 +5,7 @@ import com.przeslawskik.character_module.documents.Item;
 import com.przeslawskik.character_module.mapper.EnemyResponse;
 import com.przeslawskik.character_module.mapper.HeroCreationRequest;
 import com.przeslawskik.character_module.mapper.HeroStatsResponse;
+import com.przeslawskik.character_module.mapper.LocationResponse;
 import com.przeslawskik.character_module.other.ItemsManipulationHandler;
 import com.przeslawskik.character_module.other.ItemsRegister;
 import com.przeslawskik.character_module.other.StatsEnum;
@@ -112,6 +113,10 @@ public class CSService {
     }
 
     public List<EnemyResponse> getLocationEnemies(Integer locId) {
+        return null;
+    }
+
+    public List<LocationResponse> getLocations() {
         return null;
     }
 }
