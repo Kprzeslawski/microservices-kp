@@ -45,7 +45,7 @@ public class CSController {
 
     @GetMapping("/location_fight/{id}/{locId}")
     public ResponseEntity<BattleResponse> getLocationFight(
-            @PathVariable Integer id,
+            @PathVariable ObjectId id,
             @PathVariable Integer locId
     ){
         return ResponseEntity.ok(service.getLocationFight(id,locId));
@@ -58,18 +58,18 @@ public class CSController {
         return ResponseEntity.ok(service.createNewHero(request));
     }
 
-    @GetMapping("/award_hero_with_item/{id}")
-    public ResponseEntity<Boolean> addItemToInventory(){
-        return ResponseEntity.ok(service.addItemToInventory());
-    }
-
-    @GetMapping("/award_hero_with_xp/")
-    public ResponseEntity<Boolean> awardWithXp(){
-        return ResponseEntity.ok(service.awardWithXp());
-    }
+//    @GetMapping("/award_hero_with_item/{id}")
+//    public ResponseEntity<Boolean> addItemToInventory(){
+//        return ResponseEntity.ok(service.addItemToInventory());
+//    }
+//
+//    @GetMapping("/award_hero_with_xp/")
+//    public ResponseEntity<Boolean> awardWithXp(){
+//        return ResponseEntity.ok(service.awardWithXp());
+//    }
 
     @GetMapping("/change_hero_equipment")
-    public ResponseEntity<Boolean> changeEquipment(){
+    public ResponseEntity<HeroStatsResponse> changeEquipment(){
         return ResponseEntity.ok(service.changeEquipment());
     }
 

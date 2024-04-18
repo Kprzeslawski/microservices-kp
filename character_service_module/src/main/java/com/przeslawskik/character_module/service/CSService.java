@@ -89,15 +89,15 @@ public class CSService {
         return heroRepository.save(h).getId();
     }
 
-    public Boolean addItemToInventory() {
-        return null;
-    }
+//    public Boolean addItemToInventory() {
+//        return null;
+//    }
+//
+//    public Boolean awardWithXp() {
+//        return null;
+//    }
 
-    public Boolean awardWithXp() {
-        return null;
-    }
-
-    public Boolean changeEquipment() {
+    public HeroStatsResponse changeEquipment() {
         return null;
     }
 
@@ -117,7 +117,7 @@ public class CSService {
         return null;
     }
 
-    public BattleResponse getLocationFight(Integer id, Integer locId) {
+    public BattleResponse getLocationFight(ObjectId id, Integer locId) {
         return null;
     }
 }
