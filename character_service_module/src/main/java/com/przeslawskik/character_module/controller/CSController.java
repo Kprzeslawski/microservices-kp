@@ -1,9 +1,6 @@
 package com.przeslawskik.character_module.controller;
 
-import com.przeslawskik.character_module.mapper.EnemyResponse;
-import com.przeslawskik.character_module.mapper.HeroCreationRequest;
-import com.przeslawskik.character_module.mapper.HeroStatsResponse;
-import com.przeslawskik.character_module.mapper.LocationResponse;
+import com.przeslawskik.character_module.mapper.*;
 import com.przeslawskik.character_module.service.CSService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,7 @@ public class CSController {
     ){
         return ResponseEntity.ok(service.getEnemyStats(id));
     }
-    @GetMapping("/location_enemies/{id}")
+    @GetMapping("/location_enemies/{locId}")
     public ResponseEntity<List<EnemyResponse>> getLocationEnemies(
             @PathVariable Integer locId
     ){
@@ -43,6 +40,14 @@ public class CSController {
     @GetMapping("/locations")
     public ResponseEntity<List<LocationResponse>> getLocations(){
         return ResponseEntity.ok(service.getLocations());
+    }
+
+
+    @GetMapping("/location_fight/{locId}")
+    public ResponseEntity<BattleResponse> getlocationFight(
+            @PathVariable Integer locId
+    ){
+        return ResponseEntity.ok(service.getLocationFight(locId));
     }
 
     @PostMapping("/hero_creation")
