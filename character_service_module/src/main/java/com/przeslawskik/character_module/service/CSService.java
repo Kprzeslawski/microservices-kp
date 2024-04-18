@@ -117,7 +117,7 @@ public class CSService {
         return null;
     }
 
-    public BattleResponse getLocationFight(Integer locId) {
+    public BattleResponse getLocationFight(Integer id, Integer locId) {
         return null;
     }
 }

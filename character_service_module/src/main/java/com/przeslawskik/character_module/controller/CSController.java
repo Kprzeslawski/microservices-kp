@@ -43,11 +43,12 @@ public class CSController {
     }
 
 
-    @GetMapping("/location_fight/{locId}")
-    public ResponseEntity<BattleResponse> getlocationFight(
+    @GetMapping("/location_fight/{id}/{locId}")
+    public ResponseEntity<BattleResponse> getLocationFight(
+            @PathVariable Integer id,
             @PathVariable Integer locId
     ){
-        return ResponseEntity.ok(service.getLocationFight(locId));
+        return ResponseEntity.ok(service.getLocationFight(id,locId));
     }
 
     @PostMapping("/hero_creation")
