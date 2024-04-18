@@ -1,5 +1,6 @@
 package com.przeslawskik.character_module.controller;
 
+import com.przeslawskik.character_module.mapper.EnemyResponse;
 import com.przeslawskik.character_module.mapper.HeroCreationRequest;
 import com.przeslawskik.character_module.mapper.HeroStatsResponse;
 import com.przeslawskik.character_module.service.CSService;
@@ -8,16 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.stream.events.EndElement;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/hero")
 public class CSController {
 
     @Autowired
     private CSService service;
-    @GetMapping("/test")
-    public ResponseEntity<Integer> test(){
-        return ResponseEntity.ok(service.test_save());
-    }
 
     @GetMapping("/hero_stats/{id}")
     public ResponseEntity<HeroStatsResponse> getChampStats(
@@ -32,6 +32,16 @@ public class CSController {
     ){
         return ResponseEntity.ok(service.getEnemyStats(id));
     }
+    @GetMapping("/location_enemies/{id}")
+    public ResponseEntity<List<EnemyResponse>> getLocationEnemies(
+            @PathVariable Integer locId
+    ){
+        return ResponseEntity.ok(service.getLocationEnemies(locId));
+    }
+
+
+
+
     @PostMapping("/hero_creation")
     public ResponseEntity<ObjectId> createNewHero(
             @RequestBody HeroCreationRequest request

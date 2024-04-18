@@ -2,6 +2,7 @@ package com.przeslawskik.character_module.service;
 
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.Item;
+import com.przeslawskik.character_module.mapper.EnemyResponse;
 import com.przeslawskik.character_module.mapper.HeroCreationRequest;
 import com.przeslawskik.character_module.mapper.HeroStatsResponse;
 import com.przeslawskik.character_module.other.ItemsManipulationHandler;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class CSService {
@@ -106,6 +108,10 @@ public class CSService {
     }
 
     public HeroStatsResponse getEnemyStats(Integer id) {
+        return null;
+    }
+
+    public List<EnemyResponse> getLocationEnemies(Integer locId) {
         return null;
     }
 }
