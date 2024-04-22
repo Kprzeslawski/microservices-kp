@@ -22,7 +22,6 @@ public class ItemsManipulationHandler {
         Random r = new Random();
         double randomValue = 1. - statsVariation + statsVariation * 2 * r.nextDouble();
         return Item.builder()
-                .hero(forWho)
                 .name(template.getName())
                 .stats(
                         template

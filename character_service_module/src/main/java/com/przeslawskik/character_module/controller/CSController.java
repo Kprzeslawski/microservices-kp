@@ -50,7 +50,7 @@ public class CSController {
         return ResponseEntity.ok(service.getLocationFight(id,locId));
     }
 
-    @PostMapping("/hero_creation")
+    @PostMapping("/hero_creation/{playerId}")
     public ResponseEntity<ObjectId> createNewHero(
             @RequestBody HeroCreationRequest request
     ){
@@ -65,6 +65,11 @@ public class CSController {
     @GetMapping("/playerInventory/{playerId}")
     public ResponseEntity<Boolean> getHeroInventory(){
         return ResponseEntity.ok(service.getHeroInventory());
+    }
+
+    @GetMapping("/new_player_account")
+    public ResponseEntity<ObjectId> createNewPlayerAccount(){
+        return ResponseEntity.ok(service.createNewPlayerAccount());
     }
 
 }

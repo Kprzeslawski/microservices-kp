@@ -120,4 +120,9 @@ public class CSService {
     public BattleResponse getLocationFight(ObjectId id, Integer locId) {
         return null;
     }
+
+    public ObjectId createNewPlayerAccount() {
+
+
+    }
 }
