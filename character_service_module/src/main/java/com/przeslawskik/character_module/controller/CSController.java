@@ -70,15 +70,15 @@ public class CSController {
 //        return ResponseEntity.ok(service.changeEquipment());
 //    }
 
-    @GetMapping("/playerInventory/{playerId}")
-    public ResponseEntity<Boolean> getHeroInventory(
-            @PathVariable Integer heroId
+    @GetMapping("/player_inventory/{playerId}")
+    public ResponseEntity<InventoryResponse> getHeroInventory(
+            @PathVariable String playerId
     ){
-        return ResponseEntity.ok(service.getHeroInventory());
+        return ResponseEntity.ok(service.getPlayerInventory(playerId));
     }
 
     @GetMapping("/new_player_account")
-    public ResponseEntity<ObjectId> createNewPlayerAccount(){
+    public ResponseEntity<String> createNewPlayerAccount(){
         return ResponseEntity.ok(service.createNewPlayerAccount());
     }
 

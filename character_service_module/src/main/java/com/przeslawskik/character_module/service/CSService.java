@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -101,11 +102,28 @@ public class CSService {
         return null;
     }
 
-    public ObjectId createNewPlayerAccount() {
 
-        PlayerInventory pI = new PlayerInventory();
 
-        return playerInventoryRepository.save(pI).getId();
+    public InventoryResponse getPlayerInventory(String playerId) {
 
+        PlayerInventory pi = playerInventoryRepository.findById(new ObjectId(playerId)).orElseThrow();
+        return  InventoryResponse
+                .builder()
+                .gold(pi.getGold())
+                .items(pi.getItems())
+                .build();
+    }
+
+    public String createNewPlayerAccount() {
+        return playerInventoryRepository
+                .save(
+                        PlayerInventory
+                                .builder()
+                                .gold(0)
+                                .items(new ArrayList<>())
+                                .build()
+                )
+                .getId()
+                .toHexString();
     }
 }

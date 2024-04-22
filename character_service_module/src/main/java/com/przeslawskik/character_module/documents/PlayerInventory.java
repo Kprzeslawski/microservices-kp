@@ -22,7 +22,6 @@ public class PlayerInventory {
     @Id
     private ObjectId id;
     private Integer gold;
-
     private List<Item> items;
 
 }
