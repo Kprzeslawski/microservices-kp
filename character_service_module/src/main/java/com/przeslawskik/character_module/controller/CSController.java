@@ -11,26 +11,31 @@ import javax.xml.stream.events.EndElement;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/hero")
+@RequestMapping("/api/player")
 public class CSController {
 
     @Autowired
     private CSService service;
 
-    @GetMapping("/hero_stats/{id}")
+    @GetMapping("/test")
+    public ResponseEntity<String> test(){
+        return ResponseEntity.ok("OK");
+    }
+
+    @GetMapping("/hero-stats/{id}")
     public ResponseEntity<HeroStatsResponse> getChampStats(
             @PathVariable ObjectId id
     ){
         return ResponseEntity.ok(service.getChampStats(id));
     }
 
-    @GetMapping("/enemy_stat/{id}")
+    @GetMapping("/enemy-stat/{id}")
     public ResponseEntity<HeroStatsResponse> getEnemyStat(
             @PathVariable Integer id
     ){
         return ResponseEntity.ok(service.getEnemyStats(id));
     }
-    @GetMapping("/location_enemies/{locId}")
+    @GetMapping("/location-enemies/{locId}")
     public ResponseEntity<List<EnemyResponse>> getLocationEnemies(
             @PathVariable Integer locId
     ){
@@ -57,13 +62,18 @@ public class CSController {
         return ResponseEntity.ok(service.createNewHero(request));
     }
 
-    @GetMapping("/change_hero_equipment/{playerId}/{heroId}}")
-    public ResponseEntity<HeroStatsResponse> changeEquipment(){
-        return ResponseEntity.ok(service.changeEquipment());
-    }
+//    @GetMapping("/changeHeroEquipment/{playerId}/{heroId}}")
+//    public ResponseEntity<HeroStatsResponse> changeEquipment(
+//            @PathVariable ObjectId playerId,
+//            @PathVariable Integer heroId
+//    ){
+//        return ResponseEntity.ok(service.changeEquipment());
+//    }
 
     @GetMapping("/playerInventory/{playerId}")
-    public ResponseEntity<Boolean> getHeroInventory(){
+    public ResponseEntity<Boolean> getHeroInventory(
+            @PathVariable Integer heroId
+    ){
         return ResponseEntity.ok(service.getHeroInventory());
     }
 
