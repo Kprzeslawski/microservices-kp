@@ -12,4 +12,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Builder
 public class HeroCreationRequest {
     String name;
+    String playerId;
 }

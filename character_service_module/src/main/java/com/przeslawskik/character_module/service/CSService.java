@@ -28,46 +28,47 @@ public class CSService {
         return 0;
     }
 
-    public HeroStatsResponse getChampStats(ObjectId pId) {
+    public HeroStatsResponse getChampStats(String pId, String hId) {
 
-        var h = heroRepository.findById(pId);
+        var h = heroRepository.findById(new ObjectId(hId)).orElseThrow();
 
-        if(h.isEmpty())throw new RuntimeException("NO HERO WITH ID");
+        if(!h.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("NOT OWNER OF HERO");
 
         return HeroStatsResponse
                 .builder()
-                    .health(h.get().getStats().get(StatsEnum.HEALTH))
-                    .attack_dmg(h.get().getStats().get(StatsEnum.ATTACK_DAMAGE))
-                    .armor(h.get().getStats().get(StatsEnum.ARMOR))
-                    .def(h.get().getStats().get(StatsEnum.DEFENCE))
-                    .pow(h.get().getStats().get(StatsEnum.POWER))
-                    .agile(h.get().getStats().get(StatsEnum.AGILITY))
-                    .c_rate(h.get().getStats().get(StatsEnum.C_RATE))
-                    .c_dmg(h.get().getStats().get(StatsEnum.C_DMG))
+                    .health(h.getStats().get(StatsEnum.HEALTH.toString()))
+                    .attack_dmg(h.getStats().get(StatsEnum.ATTACK_DAMAGE.toString()))
+                    .armor(h.getStats().get(StatsEnum.ARMOR.toString()))
+                    .def(h.getStats().get(StatsEnum.DEFENCE.toString()))
+                    .pow(h.getStats().get(StatsEnum.POWER.toString()))
+                    .agile(h.getStats().get(StatsEnum.AGILITY.toString()))
+                    .c_rate(h.getStats().get(StatsEnum.C_RATE.toString()))
+                    .c_dmg(h.getStats().get(StatsEnum.C_DMG.toString()))
                 .build();
 
     }
 
-    public ObjectId createNewHero(HeroCreationRequest request) {
-        var h = Hero.builder()
+    public String createNewHero(HeroCreationRequest request) {
+        var creation = Hero.builder()
                 .name(request.getName())
                 .level(1)
                 .exp(0)
+                .ownerInv(new ObjectId(request.getPlayerId()))
                 .stats(
                         new HashMap<>(){{
-                            put(StatsEnum.HEALTH, 20);
-                            put(StatsEnum.ATTACK_DAMAGE,2);
-                            put(StatsEnum.ARMOR,0);
-                            put(StatsEnum.DEFENCE,0);
-                            put(StatsEnum.POWER,0);
-                            put(StatsEnum.AGILITY,0);
-                            put(StatsEnum.C_RATE,0);
-                            put(StatsEnum.C_DMG,0);
+                            put(StatsEnum.HEALTH.toString(), 20);
+                            put(StatsEnum.ATTACK_DAMAGE.toString(),2);
+                            put(StatsEnum.ARMOR.toString(),0);
+                            put(StatsEnum.DEFENCE.toString(),0);
+                            put(StatsEnum.POWER.toString(),0);
+                            put(StatsEnum.AGILITY.toString(),0);
+                            put(StatsEnum.C_RATE.toString(),0);
+                            put(StatsEnum.C_DMG.toString(),0);
                         }}
                 )
                 .build();
-
-        return heroRepository.save(h).getId();
+        var saved = heroRepository.save(creation);
+        return saved.getId().toHexString();
     }
 
 //    public Boolean addItemToInventory() {

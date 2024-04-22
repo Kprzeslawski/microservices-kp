@@ -1,5 +1,7 @@
 package com.przeslawskik.character_module.other;
 
+import java.util.Arrays;
+
 public enum StatsEnum {
 
     HEALTH("health"),
@@ -15,9 +17,13 @@ public enum StatsEnum {
     StatsEnum(String asString){
         this.asString = asString;
     }
-
     @Override
     public String toString() {
         return asString;
     }
+
+    public static StatsEnum valueOfE(String s){
+        return Arrays.stream(StatsEnum.values()).filter(statsEnum -> statsEnum.asString.equals(s)).findFirst().orElseThrow();
+    }
+
 }

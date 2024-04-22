@@ -9,6 +9,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Reference;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 import java.util.Map;
@@ -22,13 +23,13 @@ public class Hero {
 
     @Id
     private ObjectId id;
-    @Reference
+
     private ObjectId ownerInv;
     private String name;
     private Integer level;
     private Integer exp;
-    private Map<StatsEnum,Integer> base_stats;
-    private Map<StatsEnum,Integer> stats;
+    private Map<String,Integer> base_stats;
+    private Map<String,Integer> stats;
     private List<Item> equipped;
 
 }

@@ -22,13 +22,33 @@ public class CSController {
         return ResponseEntity.ok("OK");
     }
 
-    @GetMapping("/hero-stats/{id}")
+    @GetMapping("/hero-stats/{playerId}/{heroId}")
     public ResponseEntity<HeroStatsResponse> getChampStats(
-            @PathVariable ObjectId id
+            @PathVariable String playerId,
+            @PathVariable String heroId
     ){
-        return ResponseEntity.ok(service.getChampStats(id));
+        return ResponseEntity.ok(service.getChampStats(playerId,heroId));
     }
 
+    @PostMapping("/hero_creation")
+    public ResponseEntity<String> createNewHero(
+            @RequestBody HeroCreationRequest request
+    ){
+        return ResponseEntity.ok(service.createNewHero(request));
+    }
+
+    @GetMapping("/player_inventory/{playerId}")
+    public ResponseEntity<InventoryResponse> getHeroInventory(
+            @PathVariable String playerId
+    ){
+        return ResponseEntity.ok(service.getPlayerInventory(playerId));
+    }
+
+    @GetMapping("/new_player_account")
+    public ResponseEntity<String> createNewPlayerAccount(){
+        return ResponseEntity.ok(service.createNewPlayerAccount());
+    }
+    //TODO
     @GetMapping("/enemy-stat/{id}")
     public ResponseEntity<HeroStatsResponse> getEnemyStat(
             @PathVariable Integer id
@@ -54,32 +74,4 @@ public class CSController {
     ){
         return ResponseEntity.ok(service.getLocationFight(id,locId));
     }
-
-    @PostMapping("/hero_creation/{playerId}")
-    public ResponseEntity<ObjectId> createNewHero(
-            @RequestBody HeroCreationRequest request
-    ){
-        return ResponseEntity.ok(service.createNewHero(request));
-    }
-
-//    @GetMapping("/changeHeroEquipment/{playerId}/{heroId}}")
-//    public ResponseEntity<HeroStatsResponse> changeEquipment(
-//            @PathVariable ObjectId playerId,
-//            @PathVariable Integer heroId
-//    ){
-//        return ResponseEntity.ok(service.changeEquipment());
-//    }
-
-    @GetMapping("/player_inventory/{playerId}")
-    public ResponseEntity<InventoryResponse> getHeroInventory(
-            @PathVariable String playerId
-    ){
-        return ResponseEntity.ok(service.getPlayerInventory(playerId));
-    }
-
-    @GetMapping("/new_player_account")
-    public ResponseEntity<String> createNewPlayerAccount(){
-        return ResponseEntity.ok(service.createNewPlayerAccount());
-    }
-
 }
