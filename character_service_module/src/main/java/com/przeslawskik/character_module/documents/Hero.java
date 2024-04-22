@@ -9,6 +9,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.Map;
 
 @Document(collection = "heroes")
@@ -25,5 +26,6 @@ public class Hero {
     private Integer exp;
     private Map<StatsEnum,Integer> base_stats;
     private Map<StatsEnum,Integer> stats;
+    private List<Item> equipped;
 
 }
