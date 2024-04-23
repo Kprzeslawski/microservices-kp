@@ -1,10 +1,10 @@
 package com.przeslawskik.character_module.service;
 
+import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
 import com.przeslawskik.character_module.other.Stats;
-import com.przeslawskik.character_module.other.StatsEnum;
 import com.przeslawskik.character_module.repository.HeroRepository;
 import com.przeslawskik.character_module.repository.PlayerInventoryRepository;
 import org.bson.types.ObjectId;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -37,14 +36,7 @@ public class CSService {
 
         return HeroStatsResponse
                 .builder()
-                    .health(h.getStats().getHealth())
-                    .attack_dmg(h.getStats().getAttack_dmg())
-                    .armor(h.getStats().getArmor())
-                    .def(h.getStats().getDef())
-                    .pow(h.getStats().getPow())
-                    .agile(h.getStats().getAgile())
-                    .c_rate(h.getStats().getC_rate())
-                    .c_dmg(h.getStats().getC_dmg())
+                .stats(h.getStats())
                 .build();
 
     }
@@ -57,40 +49,20 @@ public class CSService {
                 .ownerInv(new ObjectId(request.getPlayerId()))
                 .stats(
                         Stats.builder().health(20).attack_dmg(2).build()
-//                        new HashMap<>(){{
-//                            put(StatsEnum.HEALTH.toString(), 20);
-//                            put(StatsEnum.ATTACK_DAMAGE.toString(),2);
-//                            put(StatsEnum.ARMOR.toString(),0);
-//                            put(StatsEnum.DEFENCE.toString(),0);
-//                            put(StatsEnum.POWER.toString(),0);
-//                            put(StatsEnum.AGILITY.toString(),0);
-//                            put(StatsEnum.C_RATE.toString(),0);
-//                            put(StatsEnum.C_DMG.toString(),0);
-//                        }}
                 )
                 .build();
         var saved = heroRepository.save(creation);
         return saved.getId().toHexString();
     }
 
-//    public Boolean addItemToInventory() {
-//        return null;
-//    }
-//
-//    public Boolean awardWithXp() {
-//        return null;
-//    }
+    public HeroStatsResponse getEnemyStats(String name){
+        var record = EnemiesRegister.register.get(name);
 
-    public HeroStatsResponse changeEquipment() {
-        return null;
-    }
+        if(record == null) throw new RuntimeException("No Enemy with given Name");
 
-    public Boolean getHeroInventory() {
-        return null;
-    }
-
-    public HeroStatsResponse getEnemyStats(Integer id) {
-        return null;
+        return new HeroStatsResponse(
+                record.getStats()
+        );
     }
 
     public List<EnemyResponse> getLocationEnemies(Integer locId) {

@@ -49,11 +49,15 @@ public class CSController {
         return ResponseEntity.ok(service.createNewPlayerAccount());
     }
     //TODO
-    @GetMapping("/enemy-stat/{id}")
-    public ResponseEntity<HeroStatsResponse> getEnemyStat(
-            @PathVariable Integer id
+    @GetMapping("/enemy_stat/{name}")
+    public ResponseEntity<?> getEnemyStat(
+            @PathVariable String name
     ){
-        return ResponseEntity.ok(service.getEnemyStats(id));
+        try{
+            return ResponseEntity.ok(service.getEnemyStats(name));
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     @GetMapping("/location-enemies/{locId}")
     public ResponseEntity<List<EnemyResponse>> getLocationEnemies(
