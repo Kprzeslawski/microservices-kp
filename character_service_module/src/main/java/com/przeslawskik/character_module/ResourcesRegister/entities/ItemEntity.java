@@ -1,4 +1,4 @@
-package com.przeslawskik.character_module.ResourcesRegister;
+package com.przeslawskik.character_module.ResourcesRegister.entities;
 
 import com.przeslawskik.character_module.other.SlotEnum;
 import com.przeslawskik.character_module.other.StatsEnum;
@@ -11,9 +11,8 @@ import java.util.Map;
 @Builder
 @AllArgsConstructor
 @Data
-public class BaseItem {
+public class ItemEntity {
     private final String name;
     private final SlotEnum slot;
     private final Map<StatsEnum,Integer> avg_stats;
-
 }

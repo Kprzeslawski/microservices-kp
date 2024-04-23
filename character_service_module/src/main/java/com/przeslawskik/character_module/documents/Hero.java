@@ -1,5 +1,6 @@
 package com.przeslawskik.character_module.documents;
 
+import com.przeslawskik.character_module.other.Stats;
 import com.przeslawskik.character_module.other.StatsEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +29,8 @@ public class Hero {
     private String name;
     private Integer level;
     private Integer exp;
-    private Map<String,Integer> base_stats;
-    private Map<String,Integer> stats;
+    private Stats base_stats;
+    private Stats stats;
     private List<Item> equipped;
 
 }

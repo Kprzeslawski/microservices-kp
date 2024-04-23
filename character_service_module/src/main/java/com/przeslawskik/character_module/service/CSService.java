@@ -3,6 +3,7 @@ package com.przeslawskik.character_module.service;
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
+import com.przeslawskik.character_module.other.Stats;
 import com.przeslawskik.character_module.other.StatsEnum;
 import com.przeslawskik.character_module.repository.HeroRepository;
 import com.przeslawskik.character_module.repository.PlayerInventoryRepository;
@@ -36,14 +37,14 @@ public class CSService {
 
         return HeroStatsResponse
                 .builder()
-                    .health(h.getStats().get(StatsEnum.HEALTH.toString()))
-                    .attack_dmg(h.getStats().get(StatsEnum.ATTACK_DAMAGE.toString()))
-                    .armor(h.getStats().get(StatsEnum.ARMOR.toString()))
-                    .def(h.getStats().get(StatsEnum.DEFENCE.toString()))
-                    .pow(h.getStats().get(StatsEnum.POWER.toString()))
-                    .agile(h.getStats().get(StatsEnum.AGILITY.toString()))
-                    .c_rate(h.getStats().get(StatsEnum.C_RATE.toString()))
-                    .c_dmg(h.getStats().get(StatsEnum.C_DMG.toString()))
+                    .health(h.getStats().getHealth())
+                    .attack_dmg(h.getStats().getAttack_dmg())
+                    .armor(h.getStats().getArmor())
+                    .def(h.getStats().getDef())
+                    .pow(h.getStats().getPow())
+                    .agile(h.getStats().getAgile())
+                    .c_rate(h.getStats().getC_rate())
+                    .c_dmg(h.getStats().getC_dmg())
                 .build();
 
     }
@@ -55,16 +56,17 @@ public class CSService {
                 .exp(0)
                 .ownerInv(new ObjectId(request.getPlayerId()))
                 .stats(
-                        new HashMap<>(){{
-                            put(StatsEnum.HEALTH.toString(), 20);
-                            put(StatsEnum.ATTACK_DAMAGE.toString(),2);
-                            put(StatsEnum.ARMOR.toString(),0);
-                            put(StatsEnum.DEFENCE.toString(),0);
-                            put(StatsEnum.POWER.toString(),0);
-                            put(StatsEnum.AGILITY.toString(),0);
-                            put(StatsEnum.C_RATE.toString(),0);
-                            put(StatsEnum.C_DMG.toString(),0);
-                        }}
+                        Stats.builder().health(20).attack_dmg(2).build()
+//                        new HashMap<>(){{
+//                            put(StatsEnum.HEALTH.toString(), 20);
+//                            put(StatsEnum.ATTACK_DAMAGE.toString(),2);
+//                            put(StatsEnum.ARMOR.toString(),0);
+//                            put(StatsEnum.DEFENCE.toString(),0);
+//                            put(StatsEnum.POWER.toString(),0);
+//                            put(StatsEnum.AGILITY.toString(),0);
+//                            put(StatsEnum.C_RATE.toString(),0);
+//                            put(StatsEnum.C_DMG.toString(),0);
+//                        }}
                 )
                 .build();
         var saved = heroRepository.save(creation);

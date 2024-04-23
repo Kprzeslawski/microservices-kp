@@ -1,7 +1,7 @@
 package com.przeslawskik.character_module.other;
 
 import com.mongodb.lang.Nullable;
-import com.przeslawskik.character_module.ResourcesRegister.BaseItem;
+import com.przeslawskik.character_module.ResourcesRegister.entities.ItemEntity;
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.Item;
 
@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 public class ItemsManipulationHandler {
 
     public static Item createNewItemBasedOnRegister(
-            BaseItem template, Hero forWho
+            ItemEntity template, Hero forWho
     ) {
         return createNewItemBasedOnRegister(template,forWho, 0.2);
     }
     public static Item createNewItemBasedOnRegister(
-            BaseItem template, Hero forWho,
+            ItemEntity template, Hero forWho,
             @Nullable double statsVariation
     ){
         Random r = new Random();
