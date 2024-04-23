@@ -1,5 +1,7 @@
 package com.przeslawskik.character_module.other;
 
+import com.przeslawskik.character_module.ResourcesRegister.BaseItem;
+
 import java.util.HashMap;
 
 public class ItemsRegister {

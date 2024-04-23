@@ -1,5 +1,7 @@
-package com.przeslawskik.character_module.other;
+package com.przeslawskik.character_module.ResourcesRegister;
 
+import com.przeslawskik.character_module.other.SlotEnum;
+import com.przeslawskik.character_module.other.StatsEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

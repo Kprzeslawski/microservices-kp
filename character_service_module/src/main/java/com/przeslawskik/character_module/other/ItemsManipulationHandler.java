@@ -1,6 +1,7 @@
 package com.przeslawskik.character_module.other;
 
 import com.mongodb.lang.Nullable;
+import com.przeslawskik.character_module.ResourcesRegister.BaseItem;
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.Item;
 
