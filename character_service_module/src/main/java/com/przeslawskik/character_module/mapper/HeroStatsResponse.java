@@ -1,5 +1,6 @@
 package com.przeslawskik.character_module.mapper;
 
+import com.przeslawskik.character_module.other.Stats;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class HeroStatsResponse {
- Integer health;
- Integer attack_dmg;
- Integer armor;
- Integer def;
- Integer pow;
- Integer agile;
- Integer c_rate;
- Integer c_dmg;
+ Stats stats;
 }

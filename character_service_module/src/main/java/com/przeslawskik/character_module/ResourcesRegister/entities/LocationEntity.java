@@ -1,6 +1,5 @@
 package com.przeslawskik.character_module.ResourcesRegister.entities;
 
-import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
 
 import java.util.List;
 

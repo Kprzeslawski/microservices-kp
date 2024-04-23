@@ -1,5 +1,6 @@
 package com.przeslawskik.character_module.ResourcesRegister.entities;
 
+import com.przeslawskik.character_module.other.Stats;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,14 +13,7 @@ import java.util.List;
 public class EnemyEntity {
     String name;
 
-    Integer health;
-    Integer attack_dmg;
-    Integer armor;
-    Integer def;
-    Integer pow;
-    Integer agile;
-    Integer c_rate;
-    Integer c_dmg;
+    Stats stats;
 
     Integer min_gold;
     Integer max_gold;

@@ -12,7 +12,9 @@ import java.util.Map;
 @AllArgsConstructor
 @Data
 public class ItemEntity {
+
     private final String name;
     private final SlotEnum slot;
     private final Map<StatsEnum,Integer> avg_stats;
+
 }
