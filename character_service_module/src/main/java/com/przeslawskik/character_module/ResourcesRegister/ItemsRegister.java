@@ -1,6 +1,5 @@
 package com.przeslawskik.character_module.ResourcesRegister;
 
-import com.przeslawskik.character_module.ResourcesRegister.entities.EnemyEntity;
 import com.przeslawskik.character_module.ResourcesRegister.entities.ItemEntity;
 import com.przeslawskik.character_module.other.SlotEnum;
 import com.przeslawskik.character_module.other.StatsEnum;
