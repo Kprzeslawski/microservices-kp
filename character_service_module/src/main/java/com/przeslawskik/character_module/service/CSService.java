@@ -24,17 +24,12 @@ public class CSService {
     @Autowired
     private PlayerInventoryRepository playerInventoryRepository;
 
-    public Integer test_save(){
-
-        return 0;
-    }
-
     public HeroStatsResponse getChampStats(String pId, String hId) {
 
         var h = heroRepository.findById(new ObjectId(hId)).orElseThrow(
-                () -> new RuntimeException("NO HERO WITH GIVEN ID")
+                () -> new RuntimeException("No Hero With Given ID")
         );
-        if(!h.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("NOT OWNER OF HERO");
+        if(!h.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("Not Owner Of That Hero");
 
         return HeroStatsResponse
                 .builder()
@@ -60,7 +55,7 @@ public class CSService {
     public HeroStatsResponse getEnemyStats(String name){
         var entity = EnemiesRegister.register.get(name);
 
-        if(entity == null) throw new RuntimeException("No Enemy with given Name");
+        if(entity == null) throw new RuntimeException("No Enemy With Given Name");
 
         return new HeroStatsResponse(
                 entity.getStats()
@@ -70,7 +65,7 @@ public class CSService {
     public List<EnemyResponse> getLocationEnemies(String locName) {
         var entity = LocationRegister.register.get(locName);
 
-        if(entity == null) throw new RuntimeException("No Location with given Name");
+        if(entity == null) throw new RuntimeException("No Location With Given Name");
 
         return entity.getEnemies()
                 .stream()
@@ -92,12 +87,12 @@ public class CSService {
     public BattleResponse getLocationFight(String pId, String hId, String locName) {
 
         var location = LocationRegister.register.get(locName);
-        if(location == null) throw new RuntimeException("No Location with given Name");
+        if(location == null) throw new RuntimeException("No Location With Given Name");
 
         var hero = heroRepository.findById(new ObjectId(hId)).orElseThrow(
-                () -> new RuntimeException("NO Hero WITH GIVEN ID")
+                () -> new RuntimeException("No Hero With Given ID")
         );
-        if(!hero.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("NOT OWNER OF HERO");
+        if(!hero.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("Not Owner Of That Hero");
 
 
 
@@ -108,7 +103,10 @@ public class CSService {
 
     public InventoryResponse getPlayerInventory(String playerId) {
 
-        PlayerInventory pi = playerInventoryRepository.findById(new ObjectId(playerId)).orElseThrow();
+        PlayerInventory pi = playerInventoryRepository.findById(new ObjectId(playerId)).orElseThrow(
+                () -> new RuntimeException("NO PLAYER WITH GIVEN ID")
+        );
+
         return  InventoryResponse
                 .builder()
                 .gold(pi.getGold())

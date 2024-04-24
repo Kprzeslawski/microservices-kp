@@ -37,17 +37,21 @@ public class CSController {
     }
 
     @GetMapping("/player_inventory/{playerId}")
-    public ResponseEntity<InventoryResponse> getHeroInventory(
+    public ResponseEntity<?> getHeroInventory(
             @PathVariable String playerId
     ){
-        return ResponseEntity.ok(service.getPlayerInventory(playerId));
+        try{
+            return ResponseEntity.ok(service.getPlayerInventory(playerId));
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/new_player_account")
     public ResponseEntity<String> createNewPlayerAccount(){
         return ResponseEntity.ok(service.createNewPlayerAccount());
     }
-    //TODO
+
     @GetMapping("/enemy_stat/{name}")
     public ResponseEntity<?> getEnemyStat(
             @PathVariable String name
@@ -70,12 +74,16 @@ public class CSController {
     }
 
     @GetMapping("/location_fight/{playerId}/{heroId}/{locId}")
-    public ResponseEntity<BattleResponse> getLocationFight(
+    public ResponseEntity<?> getLocationFight(
             @PathVariable String playerId,
             @PathVariable String heroId,
             @PathVariable String locName
     ){
-        return ResponseEntity.ok(service.getLocationFight(playerId, heroId, locName));
+        try{
+            return ResponseEntity.ok(service.getLocationFight(playerId, heroId, locName));
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/locations")
