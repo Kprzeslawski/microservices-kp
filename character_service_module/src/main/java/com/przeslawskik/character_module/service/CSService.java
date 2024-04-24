@@ -2,6 +2,7 @@ package com.przeslawskik.character_module.service;
 
 import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
 import com.przeslawskik.character_module.ResourcesRegister.LocationRegister;
+import com.przeslawskik.character_module.ResourcesRegister.entities.EnemyEntity;
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CSService {
@@ -94,7 +96,16 @@ public class CSService {
         );
         if(!hero.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("Not Owner Of That Hero");
 
+        double playerTurnMeter = 0.;
+        double enemyTurnMeter = 0.;
 
+        Random rand = new Random();
+        EnemyEntity enemy = location.getEnemies().get(
+                rand.nextInt(location.getEnemies().size())
+        );
+
+        int enemyHp = enemy.getStats().getHealth();
+        int playerHp = hero.getStats().getHealth();
 
 
         return null;
