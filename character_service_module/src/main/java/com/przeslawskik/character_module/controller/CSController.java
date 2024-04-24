@@ -69,16 +69,17 @@ public class CSController {
         }
     }
 
+    @GetMapping("/location_fight/{playerId}/{heroId}/{locId}")
+    public ResponseEntity<BattleResponse> getLocationFight(
+            @PathVariable String playerId,
+            @PathVariable String heroId,
+            @PathVariable String locName
+    ){
+        return ResponseEntity.ok(service.getLocationFight(playerId, heroId, locName));
+    }
+
     @GetMapping("/locations")
     public ResponseEntity<List<LocationResponse>> getLocations(){
         return ResponseEntity.ok(service.getLocations());
-    }
-
-    @GetMapping("/location_fight/{playerId}/{heroId}/{locId}")
-    public ResponseEntity<BattleResponse> getLocationFight(
-            @PathVariable ObjectId id,
-            @PathVariable Integer locId
-    ){
-        return ResponseEntity.ok(service.getLocationFight(id,locId));
     }
 }

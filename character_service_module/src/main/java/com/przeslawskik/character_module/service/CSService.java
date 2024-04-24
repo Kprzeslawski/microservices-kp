@@ -31,8 +31,9 @@ public class CSService {
 
     public HeroStatsResponse getChampStats(String pId, String hId) {
 
-        var h = heroRepository.findById(new ObjectId(hId)).orElseThrow();
-
+        var h = heroRepository.findById(new ObjectId(hId)).orElseThrow(
+                () -> new RuntimeException("NO Hero WITH GIVEN ID")
+        );
         if(!h.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("NOT OWNER OF HERO");
 
         return HeroStatsResponse
@@ -80,10 +81,27 @@ public class CSService {
     }
 
     public List<LocationResponse> getLocations() {
-        return null;
+        return LocationRegister.register.values()
+                .stream()
+                .map(rec -> new LocationResponse(
+                        rec.getName(),rec.getMin_lv()
+                ))
+                .toList();
     }
 
-    public BattleResponse getLocationFight(ObjectId id, Integer locId) {
+    public BattleResponse getLocationFight(String pId, String hId, String locName) {
+
+        var location = LocationRegister.register.get(locName);
+        if(location == null) throw new RuntimeException("No Location with given Name");
+
+        var hero = heroRepository.findById(new ObjectId(hId)).orElseThrow(
+                () -> new RuntimeException("NO Hero WITH GIVEN ID")
+        );
+        if(!hero.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("NOT OWNER OF HERO");
+
+
+
+
         return null;
     }
 
