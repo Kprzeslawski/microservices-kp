@@ -1,6 +1,7 @@
 package com.przeslawskik.character_module.service;
 
 import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
+import com.przeslawskik.character_module.ResourcesRegister.LocationRegister;
 import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
@@ -56,17 +57,26 @@ public class CSService {
     }
 
     public HeroStatsResponse getEnemyStats(String name){
-        var record = EnemiesRegister.register.get(name);
+        var entity = EnemiesRegister.register.get(name);
 
-        if(record == null) throw new RuntimeException("No Enemy with given Name");
+        if(entity == null) throw new RuntimeException("No Enemy with given Name");
 
         return new HeroStatsResponse(
-                record.getStats()
+                entity.getStats()
         );
     }
 
-    public List<EnemyResponse> getLocationEnemies(Integer locId) {
-        return null;
+    public List<EnemyResponse> getLocationEnemies(String locName) {
+        var entity = LocationRegister.register.get(locName);
+
+        if(entity == null) throw new RuntimeException("No Location with given Name");
+
+        return entity.getEnemies()
+                .stream()
+                .map(rec -> new EnemyResponse(
+                        rec.getName(), rec.getMin_gold(), rec.getMax_gold(), 1,1,rec.getStats()
+                ))
+                .toList();
     }
 
     public List<LocationResponse> getLocations() {

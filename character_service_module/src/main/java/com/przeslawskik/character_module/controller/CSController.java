@@ -58,11 +58,15 @@ public class CSController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/location-enemies/{locId}")
-    public ResponseEntity<List<EnemyResponse>> getLocationEnemies(
-            @PathVariable Integer locId
+    @GetMapping("/location_enemies/{locId}")
+    public ResponseEntity<?> getLocationEnemies(
+            @PathVariable String locName
     ){
-        return ResponseEntity.ok(service.getLocationEnemies(locId));
+        try{
+            return ResponseEntity.ok(service.getLocationEnemies(locName));
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/locations")
