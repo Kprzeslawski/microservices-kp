@@ -32,7 +32,7 @@ public class CSService {
     public HeroStatsResponse getChampStats(String pId, String hId) {
 
         var h = heroRepository.findById(new ObjectId(hId)).orElseThrow(
-                () -> new RuntimeException("NO Hero WITH GIVEN ID")
+                () -> new RuntimeException("NO HERO WITH GIVEN ID")
         );
         if(!h.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("NOT OWNER OF HERO");
 
