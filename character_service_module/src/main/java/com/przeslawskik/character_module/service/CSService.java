@@ -96,9 +96,6 @@ public class CSService {
         );
         if(!hero.getOwnerInv().toHexString().equals(pId))throw new RuntimeException("Not Owner Of That Hero");
 
-        double playerTurnMeter = 0.;
-        double enemyTurnMeter = 0.;
-
         Random rand = new Random();
         EnemyEntity enemy = location.getEnemies().get(
                 rand.nextInt(location.getEnemies().size())
@@ -106,6 +103,11 @@ public class CSService {
 
         int enemyHp = enemy.getStats().getHealth();
         int playerHp = hero.getStats().getHealth();
+        double playerTurnMeter = 0.;
+        double enemyTurnMeter = 0.;
+
+        List<FightSequence> fight_log = new ArrayList<>();
+        boolean playerWonFight = false;
 
 
         return null;
