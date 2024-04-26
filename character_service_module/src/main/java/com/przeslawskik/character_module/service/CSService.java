@@ -117,11 +117,11 @@ public class CSService {
 
             if(pTurn){
                 playerTurnMeter = 0.;
-                enemyTurnMeter += sec_fpt * entityStats.getAgile();
-                enemyyHp -= 1.;//TODO damage
+                enemyTurnMeter += sec_fpt * enemy.getStats().getAgile();
+                enemyHp -= 1;//TODO damage
             }else {
                 enemyTurnMeter = 0.;
-                playerTurnMeter += sec_fet * playerStats.getAgile();
+                playerTurnMeter += sec_fet * hero.getStats().getAgile();
                 playerHp -= 1;// TODO 2
             }
 
