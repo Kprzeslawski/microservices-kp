@@ -136,6 +136,15 @@ public class CSService {
         if(playerWonFight){
             rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
             rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
+
+            playerInventoryRepository.findById(new ObjectId(pId)).orElseThrow(
+                    () -> new RuntimeException("No Player With Given ID")
+            );
+            //update gold and exp;
+            playerInventoryRepository.updatePlayerGold();
+            heroRepository.updateHeroExpAndLevel();
+
+
             //TODO roll for items and save new values
         }
 
