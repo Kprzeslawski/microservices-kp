@@ -117,10 +117,23 @@ public class CSService {
 
         }
 
+        if(playerHp > 0)
+            playerWonFight = true;
+
+        int rec_gold=0;
+        int rec_exp=0;
+
+        if(playerWonFight){
+
+
+        }
+
         return BattleResponse
                 .builder()
                 .playerWon(playerWonFight)
                 .fightSequence(fight_log)
+                .receivedGold(rec_gold)
+                .receivedExp(rec_exp)
                 .build();
     }
 
