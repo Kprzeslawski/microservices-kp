@@ -109,8 +109,19 @@ public class CSService {
         List<FightSequence> fight_log = new ArrayList<>();
         boolean playerWonFight = false;
 
+        while (playerHp > 0 && enemyHp > 0){
+            double sec_fpt = (100.-playerTurnMeter)/hero.getStats().getAgile();
+            double sec_fet = (100.-enemyTurnMeter)/enemy.getStats().getAgile();
 
-        return null;
+
+
+        }
+
+        return BattleResponse
+                .builder()
+                .playerWon(playerWonFight)
+                .fightSequence(fight_log)
+                .build();
     }
 
 
