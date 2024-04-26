@@ -7,6 +7,7 @@ import com.przeslawskik.character_module.documents.Hero;
 import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
 import com.przeslawskik.character_module.other.Stats;
+import com.przeslawskik.character_module.other.helperFunctions;
 import com.przeslawskik.character_module.repository.HeroRepository;
 import com.przeslawskik.character_module.repository.PlayerInventoryRepository;
 import org.bson.types.ObjectId;
@@ -124,8 +125,9 @@ public class CSService {
         int rec_exp=0;
 
         if(playerWonFight){
-
-
+            rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
+            rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
+            //TODO roll for items and save new values
         }
 
         return BattleResponse
