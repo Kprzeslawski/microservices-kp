@@ -17,6 +17,8 @@ public class EnemyEntity {
 
     Integer min_gold;
     Integer max_gold;
+    Integer min_exp;
+    Integer max_exp;
 
     List<LootTableElem> lootTable;
     @Builder
