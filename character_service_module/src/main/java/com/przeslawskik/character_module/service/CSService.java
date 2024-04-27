@@ -127,8 +127,10 @@ public class CSService {
                 if(damage_received <= 0)damage_received = 1;
 
                 enemyHp -= damage_received;
+                fight_log.add(new FightSequence(true,damage_received,enemyHp));
             }else {
                 enemyTurnMeter = 0.;
+
                 playerTurnMeter += sec_fet * hero.getStats().getAgile();
 
                 double damage = enemy.getStats().getAttack_dmg()
@@ -139,6 +141,7 @@ public class CSService {
                 if(damage_received <= 0)damage_received = 1;
 
                 playerHp -= damage_received;
+                fight_log.add(new FightSequence(false,damage_received,playerHp));
             }
 
         }
@@ -161,8 +164,6 @@ public class CSService {
             //update gold and exp;
             playerInventoryRepository.updatePlayerGold();
             heroRepository.updateHeroExpAndLevel();
-
-
             //TODO roll for items and save new values
         }
 
