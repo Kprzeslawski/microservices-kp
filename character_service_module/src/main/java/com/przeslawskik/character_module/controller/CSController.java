@@ -73,7 +73,7 @@ public class CSController {
         }
     }
 
-    @GetMapping("/location_fight/{playerId}/{heroId}/{locId}")
+    @GetMapping("/location_fight/{playerId}/{heroId}/{locName}")
     public ResponseEntity<?> getLocationFight(
             @PathVariable String playerId,
             @PathVariable String heroId,
