@@ -118,11 +118,21 @@ public class CSService {
             if(pTurn){
                 playerTurnMeter = 0.;
                 enemyTurnMeter += sec_fpt * enemy.getStats().getAgile();
-                enemyHp -= 1;//TODO damage
+
+                double damage = hero.getStats().getAttack_dmg()
+                        * Math.pow(1.01, hero.getStats().getPow())
+                        * helperFunctions.getRandomizedDamageMultiplier();
+                enemyHp -= (int) Math.round(damage * Math.pow(0.99, enemy.getStats().getDef()))
+                        - enemy.getStats().getArmor();
             }else {
                 enemyTurnMeter = 0.;
                 playerTurnMeter += sec_fet * hero.getStats().getAgile();
-                playerHp -= 1;// TODO 2
+
+                double damage = enemy.getStats().getAttack_dmg()
+                        * Math.pow(1.01, enemy.getStats().getPow())
+                        * helperFunctions.getRandomizedDamageMultiplier();
+                playerHp -= (int) Math.round(damage * Math.pow(0.99, hero.getStats().getDef()))
+                        - hero.getStats().getArmor();
             }
 
         }
@@ -132,6 +142,8 @@ public class CSService {
 
         int rec_gold=0;
         int rec_exp=0;
+
+
 
         if(playerWonFight){
             rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
