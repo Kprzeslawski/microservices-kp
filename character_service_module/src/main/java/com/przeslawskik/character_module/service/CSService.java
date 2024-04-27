@@ -111,8 +111,8 @@ public class CSService {
         boolean playerWonFight = false;
 
         while (playerHp > 0 && enemyHp > 0){
-            double sec_fpt = (100.-playerTurnMeter)/hero.getStats().getAgile();
-            double sec_fet = (100.-enemyTurnMeter)/enemy.getStats().getAgile();
+            double sec_fpt = (100.-playerTurnMeter)/(hero.getStats().getAgile() + 100.);
+            double sec_fet = (100.-enemyTurnMeter)/(enemy.getStats().getAgile() + 100.);
             boolean pTurn = sec_fpt <  sec_fet;
 
             if(pTurn){
