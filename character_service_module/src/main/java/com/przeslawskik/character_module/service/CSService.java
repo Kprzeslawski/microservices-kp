@@ -163,11 +163,6 @@ public class CSService {
 
             playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
 
-            //ReactiveMongoTemplate
-            //update gold and exp;
-//            playerInventoryRepository.updatePlayerGold();
-//            heroRepository.updateHeroExpAndLevel();
-            //TODO roll for items and save new values
         }
 
         return BattleResponse
