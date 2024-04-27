@@ -162,8 +162,8 @@ public class CSService {
                     () -> new RuntimeException("No Player With Given ID")
             );
             //update gold and exp;
-            playerInventoryRepository.updatePlayerGold();
-            heroRepository.updateHeroExpAndLevel();
+//            playerInventoryRepository.updatePlayerGold();
+//            heroRepository.updateHeroExpAndLevel();
             //TODO roll for items and save new values
         }
 
