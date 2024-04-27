@@ -1,5 +1,6 @@
 package com.przeslawskik.character_module.service;
 
+import com.mongodb.client.MongoClient;
 import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
 import com.przeslawskik.character_module.ResourcesRegister.LocationRegister;
 import com.przeslawskik.character_module.ResourcesRegister.entities.EnemyEntity;
@@ -12,6 +13,7 @@ import com.przeslawskik.character_module.repository.HeroRepository;
 import com.przeslawskik.character_module.repository.PlayerInventoryRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -113,15 +115,16 @@ public class CSService {
         while (playerHp > 0 && enemyHp > 0){
             double sec_fpt = (100.-playerTurnMeter)/(hero.getStats().getAgile() + 100.);
             double sec_fet = (100.-enemyTurnMeter)/(enemy.getStats().getAgile() + 100.);
-            boolean pTurn = sec_fpt <  sec_fet;
+            boolean pTurn = sec_fpt < sec_fet;
 
             if(pTurn){
                 playerTurnMeter = 0.;
-                enemyTurnMeter += sec_fpt * enemy.getStats().getAgile();
+                enemyTurnMeter += sec_fpt * (enemy.getStats().getAgile() + 100.);
 
                 double damage = hero.getStats().getAttack_dmg()
                         * Math.pow(1.01, hero.getStats().getPow())
                         * helperFunctions.getRandomizedDamageMultiplier();
+                //TODO check for crit
                 int damage_received = (int) Math.round(damage * Math.pow(0.99, enemy.getStats().getDef()))
                         - enemy.getStats().getArmor();
                 if(damage_received <= 0)damage_received = 1;
@@ -130,12 +133,12 @@ public class CSService {
                 fight_log.add(new FightSequence(true,damage_received,enemyHp));
             }else {
                 enemyTurnMeter = 0.;
-
-                playerTurnMeter += sec_fet * hero.getStats().getAgile();
+                playerTurnMeter += sec_fet * (hero.getStats().getAgile() + 100.);
 
                 double damage = enemy.getStats().getAttack_dmg()
                         * Math.pow(1.01, enemy.getStats().getPow())
                         * helperFunctions.getRandomizedDamageMultiplier();
+                //TODO check for crit
                 int damage_received = (int) Math.round(damage * Math.pow(0.99, hero.getStats().getDef()))
                         - hero.getStats().getArmor();
                 if(damage_received <= 0)damage_received = 1;
@@ -161,6 +164,7 @@ public class CSService {
             playerInventoryRepository.findById(new ObjectId(pId)).orElseThrow(
                     () -> new RuntimeException("No Player With Given ID")
             );
+            //ReactiveMongoTemplate
             //update gold and exp;
 //            playerInventoryRepository.updatePlayerGold();
 //            heroRepository.updateHeroExpAndLevel();
