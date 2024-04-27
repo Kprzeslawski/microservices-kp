@@ -122,8 +122,11 @@ public class CSService {
                 double damage = hero.getStats().getAttack_dmg()
                         * Math.pow(1.01, hero.getStats().getPow())
                         * helperFunctions.getRandomizedDamageMultiplier();
-                enemyHp -= (int) Math.round(damage * Math.pow(0.99, enemy.getStats().getDef()))
+                int damage_received = (int) Math.round(damage * Math.pow(0.99, enemy.getStats().getDef()))
                         - enemy.getStats().getArmor();
+                if(damage_received <= 0)damage_received = 1;
+
+                enemyHp -= damage_received;
             }else {
                 enemyTurnMeter = 0.;
                 playerTurnMeter += sec_fet * hero.getStats().getAgile();
@@ -131,8 +134,11 @@ public class CSService {
                 double damage = enemy.getStats().getAttack_dmg()
                         * Math.pow(1.01, enemy.getStats().getPow())
                         * helperFunctions.getRandomizedDamageMultiplier();
-                playerHp -= (int) Math.round(damage * Math.pow(0.99, hero.getStats().getDef()))
+                int damage_received = (int) Math.round(damage * Math.pow(0.99, hero.getStats().getDef()))
                         - hero.getStats().getArmor();
+                if(damage_received <= 0)damage_received = 1;
+
+                playerHp -= damage_received;
             }
 
         }
