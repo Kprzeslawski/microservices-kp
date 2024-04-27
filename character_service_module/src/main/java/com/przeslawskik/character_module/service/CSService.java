@@ -161,9 +161,8 @@ public class CSService {
             rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
             rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
 
-            playerInventoryRepository.findById(new ObjectId(pId)).orElseThrow(
-                    () -> new RuntimeException("No Player With Given ID")
-            );
+            playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
+
             //ReactiveMongoTemplate
             //update gold and exp;
 //            playerInventoryRepository.updatePlayerGold();
