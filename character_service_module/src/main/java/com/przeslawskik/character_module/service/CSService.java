@@ -162,7 +162,7 @@ public class CSService {
             rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
 
             playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
-
+            heroRepository.findAndIncrementExpById(new ObjectId(hId),rec_exp);
         }
 
         return BattleResponse
