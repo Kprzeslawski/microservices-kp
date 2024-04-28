@@ -14,4 +14,6 @@ public interface HeroRepository extends MongoRepository<Hero, ObjectId> {
 
     @Update("{ '$set' : { 'exp' : ?1, 'level' : ?2 } }")
     void findAndSetHeroExpAndLevelById(ObjectId objectId, Integer exp, Integer level);
+    @Update("{ '$inc' : {'stats.health' : ?1, 'stats.attack_dmg' : ?2} }")
+    void findAndAddStatsById(ObjectId objectId, int health, int attack);
 }

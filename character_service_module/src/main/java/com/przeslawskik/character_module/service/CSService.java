@@ -52,7 +52,7 @@ public class CSService {
                 .exp(0)
                 .ownerInv(new ObjectId(request.getPlayerId()))
                 .stats(
-                        Stats.builder().health(20).attack_dmg(2).build()
+                        Stats.builder().health(30).attack_dmg(3).build()
                 )
                 .build();
         var saved = heroRepository.save(creation);
@@ -176,11 +176,12 @@ public class CSService {
             if(hero.getLevel() != 60){
                 rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
                 hero.setExp(hero.getExp() + rec_exp);
-                while (hero.getExp() > hero.getLevel() && hero.getLevel() != 60){
-                    hero.setExp(hero.getExp() - hero.getLevel());
+                while (hero.getExp() >= hero.getLevel() * 20 && hero.getLevel() != 60){
+                    hero.setExp(hero.getExp() - hero.getLevel() * 20);
+                    newLevels++;
                     hero.setLevel(hero.getLevel()+1);
                 }
-                //heroRepository.findAndIncrementExpById(new ObjectId(hId),rec_exp);
+                if(newLevels > 0)heroRepository.findAndAddStatsById(new ObjectId(hId), newLevels * 5, newLevels);
                 heroRepository.findAndSetHeroExpAndLevelById(new ObjectId(hId), hero.getExp(), hero.getLevel());
             };
         }
