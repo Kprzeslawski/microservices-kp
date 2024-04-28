@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 public class ItemsManipulationHandler {
 
     public static Item createNewItemBasedOnRegister(
-            ItemEntity template, Hero forWho
+            ItemEntity template
     ) {
-        return createNewItemBasedOnRegister(template,forWho, 0.2);
+        return createNewItemBasedOnRegister(template, 0.2);
     }
     public static Item createNewItemBasedOnRegister(
-            ItemEntity template, Hero forWho,
+            ItemEntity template,
             @Nullable double statsVariation
     ){
         Random r = new Random();

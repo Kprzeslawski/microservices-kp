@@ -5,8 +5,10 @@ import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
 import com.przeslawskik.character_module.ResourcesRegister.LocationRegister;
 import com.przeslawskik.character_module.ResourcesRegister.entities.EnemyEntity;
 import com.przeslawskik.character_module.documents.Hero;
+import com.przeslawskik.character_module.documents.Item;
 import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
+import com.przeslawskik.character_module.other.ItemsManipulationHandler;
 import com.przeslawskik.character_module.other.Stats;
 import com.przeslawskik.character_module.other.helperFunctions;
 import com.przeslawskik.character_module.repository.HeroRepository;
@@ -160,7 +162,15 @@ public class CSService {
         if(playerWonFight){
             rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
             rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
+            List<Item> lootedItems = enemy
+                    .getLootTable()
+                    .stream()
+                    .filter(lootTableElem -> Math.random() <= lootTableElem.getChance())
+                    .map(lootTableElem -> ItemsManipulationHandler.createNewItemBasedOnRegister(lootTableElem.getItem()))
+                    .toList();
 
+            //for(Item i :lootedItems)
+                playerInventoryRepository.findAndAddItemsById(new ObjectId(pId), lootedItems);
             playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
             heroRepository.findAndIncrementExpById(new ObjectId(hId),rec_exp);
         }
