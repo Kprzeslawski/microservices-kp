@@ -181,7 +181,11 @@ public class CSService {
                 .fightSequence(fight_log)
                 .receivedGold(rec_gold)
                 .receivedExp(rec_exp)
-                .receivedItems(lootedItems)
+                .receivedItems(lootedItems
+                        .stream()
+                        .map(item -> new ItemResponse(item.getId().toString(),item.getName(),item.getSlot(),item.getStats()))
+                        .toList()
+                )
                 .build();
     }
 
@@ -195,7 +199,12 @@ public class CSService {
         return  InventoryResponse
                 .builder()
                 .gold(pi.getGold())
-                .items(pi.getItems())
+                .items(pi
+                        .getItems()
+                        .stream()
+                        .map(item -> new ItemResponse(item.getId().toString(),item.getName(),item.getSlot(),item.getStats()))
+                        .toList()
+                )
                 .build();
     }
 

@@ -16,5 +16,5 @@ public class BattleResponse {
     int receivedGold;
     int receivedExp;
     boolean playerLevelUp;
-    List<Item> receivedItems;
+    List<ItemResponse> receivedItems;
 }

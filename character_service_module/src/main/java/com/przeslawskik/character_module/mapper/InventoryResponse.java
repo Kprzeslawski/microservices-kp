@@ -13,5 +13,5 @@ import java.util.List;
 @Builder
 public class InventoryResponse {
     private Integer gold;
-    private List<Item> items;
+    private List<ItemResponse> items;
 }

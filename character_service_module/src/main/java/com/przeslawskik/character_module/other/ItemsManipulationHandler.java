@@ -24,6 +24,7 @@ public class ItemsManipulationHandler {
         double randomValue = 1. - statsVariation + statsVariation * 2 * r.nextDouble();
         return Item.builder()
                 .name(template.getName())
+                .slot(template.getSlot().toString())
                 .stats(
                         template
                                 .getAvg_stats()
