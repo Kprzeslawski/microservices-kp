@@ -30,7 +30,7 @@ public class ItemsManipulationHandler {
                                 .entrySet()
                                 .stream()
                                 .collect(Collectors.toMap(
-                                        Map.Entry::getKey,
+                                        m -> m.getKey().toString(),
                                         m -> ((int) Math.round(m.getValue() * randomValue))
                                 ))
                 )

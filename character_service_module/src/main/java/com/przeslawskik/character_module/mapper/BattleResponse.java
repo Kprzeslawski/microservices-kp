@@ -1,5 +1,6 @@
 package com.przeslawskik.character_module.mapper;
 
+import com.przeslawskik.character_module.documents.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,5 @@ public class BattleResponse {
     int receivedGold;
     int receivedExp;
     boolean playerLevelUp;
-    //TODO recived items
+    List<Item> receivedItems;
 }

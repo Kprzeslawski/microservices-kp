@@ -27,5 +27,9 @@ public class EnemyEntity {
     public static class LootTableElem{
         ItemEntity item;
         Double chance;
+
+        public boolean roll(){
+            return Math.random() < this.chance;
+        }
     }
 }

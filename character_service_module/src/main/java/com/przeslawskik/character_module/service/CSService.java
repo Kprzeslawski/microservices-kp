@@ -158,19 +158,19 @@ public class CSService {
         int rec_exp=0;
 
 
-
+        List<Item> lootedItems = new ArrayList<>();
         if(playerWonFight){
             rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
             rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
-            List<Item> lootedItems = enemy
+             lootedItems = enemy
                     .getLootTable()
                     .stream()
-                    .filter(lootTableElem -> Math.random() <= lootTableElem.getChance())
+                    .filter(EnemyEntity.LootTableElem::roll)
                     .map(lootTableElem -> ItemsManipulationHandler.createNewItemBasedOnRegister(lootTableElem.getItem()))
                     .toList();
 
             //for(Item i :lootedItems)
-                playerInventoryRepository.findAndAddItemsById(new ObjectId(pId), lootedItems);
+            if(!lootedItems.isEmpty())playerInventoryRepository.findAndAddItemsById(new ObjectId(pId), lootedItems);
             playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
             heroRepository.findAndIncrementExpById(new ObjectId(hId),rec_exp);
         }
@@ -181,6 +181,7 @@ public class CSService {
                 .fightSequence(fight_log)
                 .receivedGold(rec_gold)
                 .receivedExp(rec_exp)
+                .receivedItems(lootedItems)
                 .build();
     }
 

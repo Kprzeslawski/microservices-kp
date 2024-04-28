@@ -20,5 +20,5 @@ public class Item {
     private ObjectId id;
     private String name;
     private SlotEnum slot;
-    private Map<StatsEnum,Integer> stats;
+    private Map<String,Integer> stats;
 }
