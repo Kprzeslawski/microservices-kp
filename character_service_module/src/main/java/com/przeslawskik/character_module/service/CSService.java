@@ -159,20 +159,30 @@ public class CSService {
 
 
         List<Item> lootedItems = new ArrayList<>();
+        int newLevels = 0;
+
         if(playerWonFight){
             rec_gold = helperFunctions.getRandomNumber(enemy.getMin_gold(),enemy.getMax_gold());
-            rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
+            playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
+
              lootedItems = enemy
                     .getLootTable()
                     .stream()
                     .filter(EnemyEntity.LootTableElem::roll)
                     .map(lootTableElem -> ItemsManipulationHandler.createNewItemBasedOnRegister(lootTableElem.getItem()))
                     .toList();
-
-            //for(Item i :lootedItems)
             if(!lootedItems.isEmpty())playerInventoryRepository.findAndAddItemsById(new ObjectId(pId), lootedItems);
-            playerInventoryRepository.findAndIncrementGoldById(new ObjectId(pId),rec_gold);
-            heroRepository.findAndIncrementExpById(new ObjectId(hId),rec_exp);
+
+            if(hero.getLevel() != 60){
+                rec_exp = helperFunctions.getRandomNumber(enemy.getMin_exp(),enemy.getMax_exp());
+                hero.setExp(hero.getExp() + rec_exp);
+                while (hero.getExp() > hero.getLevel() && hero.getLevel() != 60){
+                    hero.setExp(hero.getExp() - hero.getLevel());
+                    hero.setLevel(hero.getLevel()+1);
+                }
+                //heroRepository.findAndIncrementExpById(new ObjectId(hId),rec_exp);
+                heroRepository.findAndSetHeroExpAndLevelById(new ObjectId(hId), hero.getExp(), hero.getLevel());
+            };
         }
 
         return BattleResponse
@@ -186,6 +196,7 @@ public class CSService {
                         .map(item -> new ItemResponse(item.getId().toString(),item.getName(),item.getSlot(),item.getStats()))
                         .toList()
                 )
+                .playerLevelUp(newLevels != 0)
                 .build();
     }
 
