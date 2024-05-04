@@ -262,7 +262,14 @@ public class CSService {
         boolean alreadyEquippedSTH = searchInEquipped.isPresent();
         if(alreadyEquippedSTH){
             Item curEquipped = searchInEquipped.get();
+            var inventoryItems = playerInventory.getItems();
+            inventoryItems.add(curEquipped);
+            playerInventory.setItems(inventoryItems);
         }
+
+        var equippedItems = hero.getEquipped();
+        equippedItems.add(itemToEquip);
+        hero.setEquipped(equippedItems);
 
         //3. calc new stats
         calcHeroNewStats(hero);
