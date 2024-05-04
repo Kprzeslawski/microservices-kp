@@ -246,6 +246,19 @@ public class CSService {
 
     public Boolean changeHeroEquipment(String playerId, String heroId, String itemId) {
         //1. get item and hero
+        var hero = heroRepository.findById(new ObjectId(heroId)).orElseThrow(
+                () -> new RuntimeException("No Hero With Given ID")
+        );
+        if(!hero.getOwnerInv().toHexString().equals(playerId))throw new RuntimeException("Not Owner Of That Hero");
+        var playerInventory = playerInventoryRepository.findById(new ObjectId(playerId)).orElseThrow(
+                () -> new RuntimeException("No Player Inventory With Given ID")
+        );
+        var search = playerInventory.getItems().stream().filter(item -> item.getId().toHexString().equals(itemId)).findFirst();
+        if(search.isEmpty())throw new RuntimeException("No Item With Given ID Present");
+
+        Item item = search.get();
+
+
         //2. change equipment
         //3. calc new stats
         //4. save changes to db
