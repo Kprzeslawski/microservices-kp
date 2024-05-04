@@ -1,6 +1,5 @@
 package com.przeslawskik.character_module.service;
 
-import com.mongodb.client.MongoClient;
 import com.przeslawskik.character_module.ResourcesRegister.EnemiesRegister;
 import com.przeslawskik.character_module.ResourcesRegister.LocationRegister;
 import com.przeslawskik.character_module.ResourcesRegister.entities.EnemyEntity;
@@ -10,16 +9,17 @@ import com.przeslawskik.character_module.documents.PlayerInventory;
 import com.przeslawskik.character_module.mapper.*;
 import com.przeslawskik.character_module.other.ItemsManipulationHandler;
 import com.przeslawskik.character_module.other.Stats;
+import com.przeslawskik.character_module.other.StatsEnum;
 import com.przeslawskik.character_module.other.helperFunctions;
 import com.przeslawskik.character_module.repository.HeroRepository;
 import com.przeslawskik.character_module.repository.PlayerInventoryRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -243,6 +243,18 @@ public class CSService {
     }
 
     public void calcHeroNewStats(Hero h){
-
+        Stats new_stats = h.getBase_stats();
+        for(Item ci : h.getEquipped()){
+            Map<String, Integer> item_stats = ci.getStats();
+            //can move to mapper for stats - convert map to stats object and handle stats object adding
+            if(item_stats.containsKey(StatsEnum.HEALTH.toString())) new_stats.setHealth(new_stats.getHealth() + item_stats.get(StatsEnum.HEALTH.toString()));
+            if(item_stats.containsKey(StatsEnum.ATTACK_DAMAGE.toString())) new_stats.setAttack_dmg(new_stats.getAttack_dmg() + item_stats.get(StatsEnum.ATTACK_DAMAGE.toString()));
+            if(item_stats.containsKey(StatsEnum.DEFENCE.toString())) new_stats.setDef(new_stats.getDef() + item_stats.get(StatsEnum.DEFENCE.toString()));
+            if(item_stats.containsKey(StatsEnum.POWER.toString())) new_stats.setPow(new_stats.getPow() + item_stats.get(StatsEnum.POWER.toString()));
+            if(item_stats.containsKey(StatsEnum.ARMOR.toString())) new_stats.setArmor(new_stats.getArmor() + item_stats.get(StatsEnum.ARMOR.toString()));
+            if(item_stats.containsKey(StatsEnum.AGILITY.toString())) new_stats.setAgile(new_stats.getAgile() + item_stats.get(StatsEnum.AGILITY.toString()));
+            if(item_stats.containsKey(StatsEnum.C_RATE.toString())) new_stats.setC_rate(new_stats.getC_rate() + item_stats.get(StatsEnum.C_RATE.toString()));
+            if(item_stats.containsKey(StatsEnum.C_DMG.toString())) new_stats.setC_dmg(new_stats.getC_dmg() + item_stats.get(StatsEnum.C_DMG.toString()));
+        }
     }
 }
