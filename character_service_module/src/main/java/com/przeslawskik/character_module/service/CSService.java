@@ -255,13 +255,20 @@ public class CSService {
         );
         var search = playerInventory.getItems().stream().filter(item -> item.getId().toHexString().equals(itemId)).findFirst();
         if(search.isEmpty())throw new RuntimeException("No Item With Given ID Present");
-
-        Item item = search.get();
-
-
+        Item itemToEquip = search.get();
+        //remove that item from inv
         //2. change equipment
+        var searchInEquipped = hero.getEquipped().stream().filter(item -> item.getSlot().equals(itemToEquip.getSlot())).findFirst();
+        boolean alreadyEquippedSTH = searchInEquipped.isPresent();
+        if(alreadyEquippedSTH){
+            Item curEquipped = searchInEquipped.get();
+        }
+
         //3. calc new stats
+        calcHeroNewStats(hero);
         //4. save changes to db
+        playerInventoryRepository.save(playerInventory);
+        heroRepository.save(hero);
 
         return true;
     }
