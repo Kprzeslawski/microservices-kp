@@ -234,6 +234,15 @@ public class CSService {
     }
 
     public Boolean changeHeroEquipment(String playerId, String heroId, String itemId) {
+        //1. get item and hero
+        //2. change equipment
+        //3. calc new stats
+        //4. save changes to db
+
         return true;
+    }
+
+    public void calcHeroNewStats(Hero h){
+
     }
 }
