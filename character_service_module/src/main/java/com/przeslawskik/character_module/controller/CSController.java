@@ -87,12 +87,16 @@ public class CSController {
     }
 
     @PostMapping("/equip_hero/{playerId}/{heroId}/{itemId}")
-    public ResponseEntity<Boolean> changeHeroEquipment(
+    public ResponseEntity<?> changeHeroEquipment(
             @PathVariable String playerId,
             @PathVariable String heroId,
             @PathVariable String itemId
     ){
-        return ResponseEntity.ok(service.changeHeroEquipment(playerId,heroId,itemId));
+        try{
+            return ResponseEntity.ok(service.changeHeroEquipment(playerId,heroId,itemId));
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/locations")
