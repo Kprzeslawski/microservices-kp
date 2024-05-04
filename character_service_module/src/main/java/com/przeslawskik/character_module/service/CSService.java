@@ -184,8 +184,16 @@ public class CSService {
                     newLevels++;
                     hero.setLevel(hero.getLevel()+1);
                 }
-                if(newLevels > 0)heroRepository.findAndAddStatsById(new ObjectId(hId), newLevels * 5, newLevels);
-                heroRepository.findAndSetHeroExpAndLevelById(new ObjectId(hId), hero.getExp(), hero.getLevel());
+                if(newLevels > 0){
+                    Stats base_st = hero.getBase_stats();
+                    Stats st = hero.getStats();
+
+                    base_st.setHealth(base_st.getHealth() + newLevels * 5);
+                    st.setHealth(st.getHealth() + newLevels * 5);
+                    base_st.setAttack_dmg(base_st.getAttack_dmg() + newLevels);
+                    st.setAttack_dmg(st.getAttack_dmg() + newLevels);
+                }
+                heroRepository.save(hero);
             };
         }
 
