@@ -21,7 +21,7 @@ public class CSController {
         return ResponseEntity.ok("OK");
     }
 
-    @GetMapping("/hero-stats/{playerId}/{heroId}")
+    @GetMapping("/hero_stats/{playerId}/{heroId}")
     public ResponseEntity<HeroStatsResponse> getChampStats(
             @PathVariable String playerId,
             @PathVariable String heroId
@@ -84,6 +84,15 @@ public class CSController {
         }catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/equip_hero/{playerId}/{heroId}/{itemId}")
+    public ResponseEntity<Boolean> changeHeroEquipment(
+            @PathVariable String playerId,
+            @PathVariable String heroId,
+            @PathVariable String itemId
+    ){
+        return ResponseEntity.ok(service.changeHeroEquipment(playerId,heroId,itemId));
     }
 
     @GetMapping("/locations")

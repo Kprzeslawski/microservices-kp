@@ -232,4 +232,8 @@ public class CSService {
                 .getId()
                 .toHexString();
     }
+
+    public Boolean changeHeroEquipment(String playerId, String heroId, String itemId) {
+        return true;
+    }
 }
