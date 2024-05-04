@@ -262,6 +262,7 @@ public class CSService {
         boolean alreadyEquippedSTH = searchInEquipped.isPresent();
         if(alreadyEquippedSTH){
             Item curEquipped = searchInEquipped.get();
+            //remove item from player
             var inventoryItems = playerInventory.getItems();
             inventoryItems.add(curEquipped);
             playerInventory.setItems(inventoryItems);
