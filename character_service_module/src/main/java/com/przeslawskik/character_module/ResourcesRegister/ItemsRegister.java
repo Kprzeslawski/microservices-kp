@@ -41,6 +41,26 @@ public class ItemsRegister {
                 put(StatsEnum.HEALTH,4);put(StatsEnum.ARMOR,2);
             }});
 
+    public static final ItemEntity IRON_BOOTS =
+            new ItemEntity("iron boots", SlotEnum.BOOTS ,new HashMap<>(){{
+                put(StatsEnum.HEALTH,6);put(StatsEnum.ARMOR,2);put(StatsEnum.DEFENCE,2);
+            }});
+
+    public static final ItemEntity IRON_CHESTPLATE =
+            new ItemEntity("iron chestplate", SlotEnum.CHEST ,new HashMap<>(){{
+                put(StatsEnum.HEALTH,6);put(StatsEnum.ARMOR,2);put(StatsEnum.DEFENCE,2);
+            }});
+
+    public static final ItemEntity IRON_LEGGINGS =
+            new ItemEntity("iron leggings", SlotEnum.LEGGINGS ,new HashMap<>(){{
+                put(StatsEnum.HEALTH,6);put(StatsEnum.ARMOR,2);put(StatsEnum.DEFENCE,2);
+            }});
+
+    public static final ItemEntity IRON_HELMET =
+            new ItemEntity("iron helmet", SlotEnum.HELMET ,new HashMap<>(){{
+                put(StatsEnum.HEALTH,6);put(StatsEnum.ARMOR,2);put(StatsEnum.DEFENCE,2);
+            }});
+
     public static final Map<String, ItemEntity> register = new HashMap<>(){{
         put(WOODEN_SWORD.getName(),WOODEN_SWORD);
         put(STONE_SWORD.getName(),STONE_SWORD);
@@ -50,6 +70,11 @@ public class ItemsRegister {
         put(LEATHER_CHESTPLATE.getName(),LEATHER_CHESTPLATE);
         put(LEATHER_LEGGINGS.getName(),LEATHER_LEGGINGS);
         put(LEATHER_HELMET.getName(),LEATHER_HELMET);
+
+        put(IRON_BOOTS.getName(),IRON_BOOTS);
+        put(IRON_CHESTPLATE.getName(),IRON_CHESTPLATE);
+        put(IRON_LEGGINGS.getName(),IRON_LEGGINGS);
+        put(IRON_HELMET.getName(),IRON_HELMET);
     }};
 
 }
