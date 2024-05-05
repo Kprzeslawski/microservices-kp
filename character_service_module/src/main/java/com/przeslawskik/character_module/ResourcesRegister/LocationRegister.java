@@ -20,6 +20,11 @@ public class LocationRegister {
                 add(EnemiesRegister.SKELETON);
                 add(EnemiesRegister.GHOST);
             }});
+    public static final LocationEntity CASTLE =
+            new LocationEntity("castle", 5, new ArrayList<>(){{
+                add(EnemiesRegister.GHOST);
+                add(EnemiesRegister.GUARDIAN);
+            }});
 
 
 
@@ -27,6 +32,7 @@ public class LocationRegister {
     public static final Map<String, LocationEntity> register = new HashMap<>(){{
         put(FOREST.getName(),FOREST);
         put(GRAVEYARD.getName(),GRAVEYARD);
+        put(CASTLE.getName(),CASTLE);
     }};
 
 }
