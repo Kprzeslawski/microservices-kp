@@ -256,12 +256,13 @@ public class CSService {
         var search = playerInventory.getItems().stream().filter(item -> item.getId().toHexString().equals(itemId)).findFirst();
         if(search.isEmpty())throw new RuntimeException("No Item With Given ID Present");
         Item itemToEquip = search.get();
+        playerInventory.setItems(playerInventory.getItems().stream().filter(item -> item != itemToEquip).toList());
         //remove that item from inv
-        //2. change equipment
         var searchInEquipped = hero.getEquipped().stream().filter(item -> item.getSlot().equals(itemToEquip.getSlot())).findFirst();
         boolean alreadyEquippedSTH = searchInEquipped.isPresent();
         if(alreadyEquippedSTH){
             Item curEquipped = searchInEquipped.get();
+            hero.setEquipped(hero.getEquipped().stream().filter(item -> item != curEquipped).toList());
             //remove item from player
             var inventoryItems = playerInventory.getItems();
             inventoryItems.add(curEquipped);
