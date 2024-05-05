@@ -11,7 +11,7 @@ public class EnemiesRegister {
     public static final EnemyEntity ZOMBIE = new EnemyEntity("zombie",
             Stats.builder().health(20).attack_dmg(2).build(),1,1, 1, 1,
             new ArrayList<>(){{
-                add(new EnemyEntity.LootTableElem(ItemsRegister.WOODEN_SWORD,1.));
+                add(new EnemyEntity.LootTableElem(ItemsRegister.WOODEN_SWORD,0.2));
             }});
 
 
