@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class BattleResponse {
+    String facedEnemy;
     boolean playerWon;
     List<FightSequence> fightSequence;
     int receivedGold;

@@ -201,6 +201,7 @@ public class CSService {
                 .builder()
                 .playerWon(playerWonFight)
                 .fightSequence(fight_log)
+                .facedEnemy(enemy.getName())
                 .receivedGold(rec_gold)
                 .receivedExp(rec_exp)
                 .receivedItems(lootedItems
