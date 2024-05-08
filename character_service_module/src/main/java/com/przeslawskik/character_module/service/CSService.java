@@ -41,6 +41,12 @@ public class CSService {
         return HeroStatsResponse
                 .builder()
                 .stats(h.getStats())
+                .equipped(
+                        h.getEquipped()
+                        .stream()
+                        .map(item -> new ItemResponse(item.getId().toString(),item.getName(),item.getSlot(),item.getStats()))
+                        .toList()
+                )
                 .build();
 
     }
@@ -62,14 +68,13 @@ public class CSService {
         return saved.getId().toHexString();
     }
 
-    public HeroStatsResponse getEnemyStats(String name){
+    public EnemyResponse getEnemyStats(String name){
         var entity = EnemiesRegister.register.get(name);
 
         if(entity == null) throw new RuntimeException("No Enemy With Given Name");
 
-        return new HeroStatsResponse(
-                entity.getStats()
-        );
+        return new EnemyResponse(
+                entity.getName(), entity.getMin_gold(), entity.getMax_gold(), 1,1,entity.getStats());
     }
 
     public List<EnemyResponse> getLocationEnemies(String locName) {
