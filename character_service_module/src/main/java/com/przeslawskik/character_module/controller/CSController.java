@@ -62,7 +62,7 @@ public class CSController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/location_enemies/{locId}")
+    @GetMapping("/location_enemies/{locName}")
     public ResponseEntity<?> getLocationEnemies(
             @PathVariable String locName
     ){
