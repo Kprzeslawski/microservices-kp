@@ -57,6 +57,9 @@ public class CSService {
                 .level(1)
                 .exp(0)
                 .ownerInv(new ObjectId(request.getPlayerId()))
+                .equipped(
+                        new ArrayList<>()
+                )
                 .base_stats(
                         Stats.builder().health(30).attack_dmg(3).build()
                 )
