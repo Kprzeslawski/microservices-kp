@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class FightSequence {
     boolean playerDealtDamage;
+    boolean isCritical;
     int entityDamageDealt;
     int secondEntityHpLeft;
 }
