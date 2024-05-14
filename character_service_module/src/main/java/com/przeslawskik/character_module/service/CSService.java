@@ -137,7 +137,10 @@ public class CSService {
                 double damage = hero.getStats().getAttack_dmg()
                         * Math.pow(1.01, hero.getStats().getPow())
                         * helperFunctions.getRandomizedDamageMultiplier();
-                //TODO check for crit
+
+                boolean isCritical =  Math.random() < ((double) hero.getStats().getC_rate() / 100.);
+                if(isCritical) damage *= (150. + hero.getStats().getC_dmg()) / 100.;
+
                 int damage_received = (int) Math.round(damage * Math.pow(0.99, enemy.getStats().getDef()))
                         - enemy.getStats().getArmor();
                 if(damage_received <= 0)damage_received = 1;
@@ -151,7 +154,10 @@ public class CSService {
                 double damage = enemy.getStats().getAttack_dmg()
                         * Math.pow(1.01, enemy.getStats().getPow())
                         * helperFunctions.getRandomizedDamageMultiplier();
-                //TODO check for crit
+
+                boolean isCritical =  Math.random() < ((double) enemy.getStats().getC_rate() / 100.);
+                if(isCritical) damage *= (150. + enemy.getStats().getC_dmg()) / 100.;
+
                 int damage_received = (int) Math.round(damage * Math.pow(0.99, hero.getStats().getDef()))
                         - hero.getStats().getArmor();
                 if(damage_received <= 0)damage_received = 1;
