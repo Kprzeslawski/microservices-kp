@@ -13,6 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class HeroStatsResponse {
+ String name;
+ Integer level;
+ Integer exp;
  Stats stats;
  List<ItemResponse> equipped;
 }

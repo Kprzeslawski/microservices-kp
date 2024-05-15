@@ -41,6 +41,9 @@ public class CSService {
         return HeroStatsResponse
                 .builder()
                 .stats(h.getStats())
+                .name(h.getName())
+                .level(h.getLevel())
+                .exp(h.getExp())
                 .equipped(
                         h.getEquipped()
                         .stream()
